@@ -273,7 +273,52 @@
       container.scrollLeft = scrollLeft - walk;
     });
   });
-
+  /**
+   * form WAS
+   */
+  document.getElementById('pricingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+  
+    const nama = document.getElementById('nama').value.trim();
+    const jenis = document.getElementById('jenis').value;
+    const telepon = document.getElementById('telepon').value.trim();
+    const email = document.getElementById('email').value.trim();
+  
+    const errorMessages = document.querySelectorAll('.error-msg');
+    errorMessages.forEach(el => el.style.display = 'none');
+  
+    let valid = true;
+  
+    if (!nama) {
+      document.getElementById('nama').nextElementSibling.style.display = 'block';
+      valid = false;
+    }
+  
+    if (!jenis) {
+      document.getElementById('jenis').nextElementSibling.style.display = 'block';
+      valid = false;
+    }
+  
+    if (!telepon) {
+      document.getElementById('telepon').parentElement.nextElementSibling.style.display = 'block';
+      valid = false;
+    }
+  
+    if (!email) {
+      document.getElementById('email').nextElementSibling.style.display = 'block';
+      valid = false;
+    }
+  
+    if (!valid) return;
+  
+    // Ubah ini ke nomor WhatsApp kamu (tanpa tanda +)
+    const nomorWA = '6288214092680';
+  
+    const pesan = `Halo! Saya ${nama}, ingin konsultasi tentang ${jenis}. Berikut nomor saya: ${telepon}, dan email saya: ${email}.`;
+  
+    const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+    window.open(urlWA, '_blank');
+  });
 
   /**
    * Navmenu Scrollspy
