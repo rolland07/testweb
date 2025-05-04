@@ -276,48 +276,48 @@
   /**
    * form WAS
    */
-  document.getElementById('pricingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+  document.querySelectorAll('.pricingForm').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
   
-    const nama = document.getElementById('nama').value.trim();
-    const jenis = document.getElementById('jenis').value;
-    const telepon = document.getElementById('telepon').value.trim();
-    const email = document.getElementById('email').value.trim();
+      const nama = this.querySelector('#nama').value.trim();
+      const jenis = this.querySelector('#jenis').value;
+      const telepon = this.querySelector('#telepon').value.trim();
+      const email = this.querySelector('#email').value.trim();
   
-    const errorMessages = document.querySelectorAll('.error-msg');
-    errorMessages.forEach(el => el.style.display = 'none');
+      const errorMessages = this.querySelectorAll('.error-msg');
+      errorMessages.forEach(el => el.style.display = 'none');
   
-    let valid = true;
+      let valid = true;
   
-    if (!nama) {
-      document.getElementById('nama').nextElementSibling.style.display = 'block';
-      valid = false;
-    }
+      if (!nama) {
+        this.querySelector('#nama').nextElementSibling.style.display = 'block';
+        valid = false;
+      }
   
-    if (!jenis) {
-      document.getElementById('jenis').nextElementSibling.style.display = 'block';
-      valid = false;
-    }
+      if (!jenis) {
+        this.querySelector('#jenis').nextElementSibling.style.display = 'block';
+        valid = false;
+      }
   
-    if (!telepon) {
-      document.getElementById('telepon').parentElement.nextElementSibling.style.display = 'block';
-      valid = false;
-    }
+      if (!telepon) {
+        this.querySelector('#telepon').parentElement.nextElementSibling.style.display = 'block';
+        valid = false;
+      }
   
-    if (!email) {
-      document.getElementById('email').nextElementSibling.style.display = 'block';
-      valid = false;
-    }
+      if (!email) {
+        this.querySelector('#email').nextElementSibling.style.display = 'block';
+        valid = false;
+      }
   
-    if (!valid) return;
+      if (!valid) return;
   
-    // Ubah ini ke nomor WhatsApp kamu (tanpa tanda +)
-    const nomorWA = '6288214092680';
+      const nomorWA = '6288214092680';
+      const pesan = `Halo! Saya ${nama}, ingin konsultasi tentang ${jenis}. Berikut nomor saya: ${telepon}, dan email saya: ${email}.`;
+      const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
   
-    const pesan = `Halo! Saya ${nama}, ingin konsultasi tentang ${jenis}. Berikut nomor saya: ${telepon}, dan email saya: ${email}.`;
-  
-    const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
-    window.open(urlWA, '_blank');
+      window.open(urlWA, '_blank');
+    });
   });
 
   /**
