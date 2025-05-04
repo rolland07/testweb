@@ -175,46 +175,48 @@
 
             <!-- Section Title -->
           <div class="form-wrapper">
-            <div class="formpricing">
-              <h4 class="white-text">Hitung Estimasi Biayamu! <span class="free-badge">FREE</span></h4>
-              <form class="form-horizontal">
-                <div class="form-row">
-                  <div class="form-pricing">
-                    <input type="text" id="nama" placeholder="nama" required>
-                    <span class="error-msg">Wajib diisi</span>
-                  </div>
-            
-                  <div class="form-pricing">
-                    <select id="jenis" required>
-                      <option value="">-- Pilih Jenis Pekerjaan --</option>
-                      <option value="kitchenset">Kitchenset</option>
-                      <option value="interior">Desain dan Pengerjaan Interior</option>
-                    </select>
-                    <span class="error-msg">Wajib diisi</span>
-                  </div>
-            
-                  <div class="form-pricing">
-                    <div class="phone-group">
-                      <span class="prefix" style="color: #000;">+62</span>
-                      <input type="tel" id="telepon" placeholder="no.telp(812....)" required>
-                    </div>
-                    <span class="error-msg">Wajib diisi</span>
-                  </div>
-            
-                  <div class="form-pricing">
-                    <input type="email" id="email" placeholder="email">
-                    <span class="error-msg">Wajib diisi</span>
-                  </div>
+            <section id="pricing" class="pricing section light-background">
+
+        <!-- Section Title -->
+        <div class="formpricing">
+          <h4>Hitung Estimasi Biayamu! <span class="free-badge">FREE</span></h4>
+          <form class="form-horizontal" id="pricingForm">
+            <div class="form-row">
+              <div class="form-pricing">
+                <input type="text" id="nama" placeholder="nama" required>
+                <span class="error-msg">Wajib diisi</span>
+              </div>
+        
+              <div class="form-pricing">
+                <select id="jenis" required>
+                  <option value="">-- Pilih Jenis Pekerjaan --</option>
+                  <option value="kitchenset">Kitchenset</option>
+                  <option value="interior">Desain dan Pengerjaan Interior</option>
+                </select>
+                <span class="error-msg">Wajib diisi</span>
+              </div>
+        
+              <div class="form-pricing">
+                <div class="phone-group">
+                  <span class="prefix">+62</span>
+                  <input type="tel" id="telepon" placeholder="no.telp(812....)" required>
                 </div>
-            
-                <div class="form-pricing full-width-button">
-                  <button type="submit" class="submit-btn">Tanya Harga</button>
-                </div>
-              </form>
+                <span class="error-msg">Wajib diisi</span>
+              </div>
+        
+              <div class="form-pricing">
+                <input type="email" id="email" placeholder="email">
+                <span class="error-msg">Wajib diisi</span>
+              </div>
             </div>
+        
+            <div class="form-pricing full-width-button">
+              <button type="submit" class="submit-btn">Tanya Harga</button>
             </div>
-          </div>
-          </section>
+          </form>
+        </div>
+        </div>
+      </section>
       </div>
 
     </section>
