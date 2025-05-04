@@ -194,6 +194,86 @@
       }
     }
   });
+    /**
+   * beforeafter
+   */
+    const slider = document.querySelector('.slider-handle');
+  const afterImage = document.querySelector('.after-overlay img');
+  const container = document.querySelector('.before-after-container');
+
+  let isDragging = false;
+
+  const updateSlider = (x) => {
+    const rect = container.getBoundingClientRect();
+    let offsetX = x - rect.left;
+    offsetX = Math.max(0, Math.min(offsetX, rect.width));
+    const percent = (offsetX / rect.width) * 100;
+    afterImage.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+    slider.style.left = `${percent}%`;
+  };
+
+  slider.addEventListener('mousedown', () => {
+    isDragging = true;
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      updateSlider(e.clientX);
+    }
+  });
+
+  // For touch devices
+  slider.addEventListener('touchstart', () => {
+    isDragging = true;
+  });
+
+  window.addEventListener('touchend', () => {
+    isDragging = false;
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (isDragging) {
+      updateSlider(e.touches[0].clientX);
+    }
+  });
+
+  /**
+   * getnow Scrollspy
+   */
+  document.querySelectorAll('[data-scroll]').forEach(container => {
+    let isDown = false;
+    let startX, scrollLeft;
+
+    container.addEventListener('mousedown', (e) => {
+      isDown = true;
+      container.classList.add('dragging');
+      startX = e.pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
+    });
+
+    container.addEventListener('mouseleave', () => {
+      isDown = false;
+      container.classList.remove('dragging');
+    });
+
+    container.addEventListener('mouseup', () => {
+      isDown = false;
+      container.classList.remove('dragging');
+    });
+
+    container.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 1.5; // Speed
+      container.scrollLeft = scrollLeft - walk;
+    });
+  });
+
 
   /**
    * Navmenu Scrollspy
