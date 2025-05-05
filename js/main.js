@@ -241,6 +241,42 @@
     }
   });
 
+    /**
+   * testimonihome Scrollspy
+   */
+    document.addEventListener("DOMContentLoaded", function () {
+      const cards = document.querySelectorAll('.testimonialhomeV2-card');
+      const dots = document.querySelectorAll('.testimonialhomeV2-dot');
+      const prevBtn = document.querySelector('.testimonialhomeV2-nav-btn.prev');
+      const nextBtn = document.querySelector('.testimonialhomeV2-nav-btn.next');
+    
+      let currentIndex = 0;
+    
+      function showCard(index) {
+        cards.forEach(card => card.classList.remove('testimonialhomeV2-active'));
+        dots.forEach(dot => dot.classList.remove('testimonialhomeV2-active'));
+        cards[index].classList.add('testimonialhomeV2-active');
+        dots[index].classList.add('testimonialhomeV2-active');
+      }
+    
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        showCard(currentIndex);
+      });
+    
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % cards.length;
+        showCard(currentIndex);
+      });
+    
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          currentIndex = parseInt(dot.dataset.index);
+          showCard(currentIndex);
+        });
+      });
+    });
+
   /**
    * getnow Scrollspy
    */
@@ -274,51 +310,100 @@
     });
   });
   /**
-   * form WAS
+   * form WAS 1
    */
-  document.querySelectorAll('.pricingForm').forEach(form => {
-    form.addEventListener('submit', function(e) {
+  
+  /**
+   * form WAS 2
+   */
+
+ document.addEventListener('DOMContentLoaded', function () {
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbz_0y8q3n_JvN1vHM_0XYA-nXYQKMPFlG9vNCSx0XalY7DJwwAjzvKHvHKgbmvxoLE-/exec';
+
+  function handleFormSubmit(formId, namaId, jenisId, teleponId, emailId, msgId) {
+    const form = document.getElementById(formId);
+    const msg = document.getElementById(msgId);
+
+    if (!form || !msg) return;
+
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
-  
-      const nama = this.querySelector('#nama').value.trim();
-      const jenis = this.querySelector('#jenis').value;
-      const telepon = this.querySelector('#telepon').value.trim();
-      const email = this.querySelector('#email').value.trim();
-  
-      const errorMessages = this.querySelectorAll('.error-msg');
-      errorMessages.forEach(el => el.style.display = 'none');
-  
+
+      const nama = document.getElementById(namaId).value.trim();
+      const jenis = document.getElementById(jenisId).value;
+      const telepon = document.getElementById(teleponId).value.trim();
+      const email = document.getElementById(emailId).value.trim();
+
+      const errorMsgs = form.querySelectorAll('.error-msg');
+      errorMsgs.forEach(el => el.style.display = 'none');
+
       let valid = true;
-  
       if (!nama) {
-        this.querySelector('#nama').nextElementSibling.style.display = 'block';
+        document.getElementById(namaId).nextElementSibling.style.display = 'block';
         valid = false;
       }
-  
       if (!jenis) {
-        this.querySelector('#jenis').nextElementSibling.style.display = 'block';
+        document.getElementById(jenisId).nextElementSibling.style.display = 'block';
         valid = false;
       }
-  
       if (!telepon) {
-        this.querySelector('#telepon').parentElement.nextElementSibling.style.display = 'block';
+        document.getElementById(teleponId).parentElement.nextElementSibling.style.display = 'block';
         valid = false;
       }
-  
       if (!email) {
-        this.querySelector('#email').nextElementSibling.style.display = 'block';
+        document.getElementById(emailId).nextElementSibling.style.display = 'block';
         valid = false;
       }
-  
+
       if (!valid) return;
-  
+
+      // Kirim ke WhatsApp
       const nomorWA = '6288214092680';
-      const pesan = `Halo! Saya ${nama}, ingin konsultasi tentang ${jenis}. Berikut nomor saya: ${telepon}, dan email saya: ${email}.`;
+      const pesan = `Halo! Saya ${nama}, ingin konsultasi tentang ${jenis}. Nomor saya: ${telepon}, email: ${email}`;
       const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
-  
       window.open(urlWA, '_blank');
+
+      // Kirim ke Google Sheets
+      const forms = ["#formpricing1", "#formpricing2"];
+
+forms.forEach((selector) => {
+    const form = document.querySelector(selector);
+    if (form) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+
+            fetch("php/pricing.php", {
+                method: "POST",
+                body: formData
+            })
+            .then((response) => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error("Gagal mengirim form");
+                }
+            })
+            .then((data) => {
+                form.reset();
+                alert("Pesan Anda berhasil terkirim!");
+            })
+            .catch((error) => {
+                alert("Terjadi kesalahan: " + error.message);
+            });
+        });
+    }
+});
+
     });
-  });
+  }
+
+  handleFormSubmit('pricingForm1', 'nama1', 'jenis1', 'telepon1', 'email1', 'msg');
+  handleFormSubmit('pricingForm2', 'nama2', 'jenis2', 'telepon2', 'email2', 'msg2');
+});
+
+
+
 
   /**
    * Navmenu Scrollspy
@@ -343,3 +428,4 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
