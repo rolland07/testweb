@@ -17,6 +17,7 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +61,7 @@
     <section id="hero" class="hero section dark-background">
       <img src="img/dumybackground.avif" alt="hero background">
   
-      <div class="container text-center">
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="20">
         <div class="hero-grid">
           <h1 class="arch-title">LAMBORDI</h1>
   
@@ -83,6 +84,7 @@
 <!--page 1-->
   <!-- Portfolio Details Section -->
   <section id="details" class="portfolio-details section">
+    <div class="container">
       <section id="details" div class="row justify-content-between gy-4 mt-4">
         <div class="col-lg-8" data-aos="fade-up">
           <div class="portfolio-description">
@@ -121,6 +123,7 @@
           </div>
         </div>
       </section>
+      </div>
   </section><!-- /Portfolio Details Section -->
       <!-- Pricing Section -->
       <!-- Call To Action Section -->
@@ -182,7 +185,6 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>About</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -214,7 +216,6 @@
     <section id="services" class="services section">
       <div class="container section-title" data-aos="fade-up">
         <BR><h2>Services</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div>
     </section>
       <section class="py-10" id="services">
@@ -305,12 +306,41 @@
 </main>
 <!--end service-->    
 
+<!-- sekat Image -->
+<section class="imgtoporto-section">
+  <div class="imgtoporto-overlay"></div>
+  <div class="imgtoporto-container swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" >
+        <img src="img/product-portfolio/kitchenset3.jpeg" alt="Porto 1">
+        <div class="imgtoporto-caption" data-aos="fade-up">
+          <div class="container">
+            <h3>Project 1</h3>
+            <a href="portfolio-details.html">Lihat Portofolio</a>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide" >
+        <img src="img/product-portfolio/other2.jpg" alt="Porto 2">
+        <div class="imgtoporto-caption" data-aos="fade-up">
+          <div class="container">
+            <h3>Project 2</h3>
+            <a href="portfolio-details.html">Lihat Portofolio</a>
+          </div>
+        </div>
+      </div>
+      <!-- Tambahkan slide lainnya jika perlu -->
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+
 
 <!--workflow-->
     <section id="Workflow" class="Workflow section">
       <div class="container section-title" data-aos="fade-up">
         <BR><h2>Workflow</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div>
     </section>
     <section class="steps-section">
@@ -488,12 +518,12 @@
     </section>
     
     <section class="testimonialhomeV2-section">
-      <div class="testimonialhomeV2-container">
+      <div class="testimonialhomeV2-container"data-aos="zoom-in">
         <div class="testimonialhomeV2-image">
           <img id="testimonial-image"  src="img/after.png" alt="Interior Example">
         </div>
-        <div class="testimonialhomeV2-content">
-          <div class="testimonialhomeV2-card-wrapper">
+        <div class="testimonialhomeV2-content" data-aos="zoom-in">
+          <div class="testimonialhomeV2-card-wrapper" data-aos="zoom-in">
     
             <!-- Card 1 -->
             <div class="testimonialhomeV2-card testimonialhomeV2-active">
@@ -585,72 +615,72 @@
 
     <!--instagram section-->
     <section id="instagram-section" class="instagram-gallery">
-      <div class="insta-intro">
+      <div class="insta-intro" data-aos="fade-in">
         <h2><i class="bi bi-instagram"></i> LambordiSocial</h2>
         <p>Follow us on Instagram for more inspiration & behind-the-scenes.</p>
       </div>
       <div class="insta-container">
-          <div class="insta-grid">
+          <div class="insta-grid" data-aos="zoom-in" data-aos-delay="20">
             <div class="insta-item">
               <img src="img/product-portfolio/hotel1.jpg" alt="Project 1">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
               </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item"data-aos="zoom-in" data-aos-delay="25">
               <img src="img/product-portfolio/kitchenset3.jpeg" alt="Project 2">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
               </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item"data-aos="zoom-in" data-aos-delay="30">
               <img src="img/product-portfolio/library1.jpg" alt="Project 3">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
               </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item"data-aos="zoom-in" data-aos-delay="35">
               <img src="img/product-portfolio/other3.jpg" alt="Project 4">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
               </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item"data-aos="zoom-in" data-aos-delay="40">
               <img src="img/product-portfolio/hotel2.jpg" alt="Project 5">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
               </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item"data-aos="zoom-in" data-aos-delay="45">
               <img src="img/product-portfolio/kithenset2.webp" alt="Project 6">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
               </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item"data-aos="zoom-in" data-aos-delay="50">
               <img src="img/dumybackground.avif" alt="Project 7">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
               </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item"data-aos="zoom-in" data-aos-delay="55">
               <img src="img/product-portfolio/other2.jpg" alt="Project 8">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
               </div>
             </div>
 
-            <div class="insta-item">
+            <div class="insta-item"data-aos="zoom-in" data-aos-delay="60">
               <img src="img/product-portfolio/kithenset2.webp" alt="Project 6">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
               </div>
             </div>
-            <div class="insta-item">
+            <div class="insta-item"data-aos="zoom-in" data-aos-delay="65">
               <img src="img/product-portfolio/kitchenset3.jpeg" alt="Project 2">
               <div class="overlay">
                 <i class="bi bi-instagram"></i>
-
+         
 
 
 
@@ -670,7 +700,6 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>for your inspiration </h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -934,6 +963,7 @@
   <script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
   <!-- Main JS File -->
   <script src="js/main.js"></script>
@@ -1066,6 +1096,24 @@
           handleFormSubmit('pricingForm2', 'nama2', 'jenis2', 'telepon2', 'email2', 'msg2');
         });
 
+
+        //buat sekat--------------------------------------
+          const swiper = new Swiper('.imgtoporto-container', {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      
+      
+    });
+    
   </script>
 
 </body>
