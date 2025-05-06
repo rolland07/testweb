@@ -1,9 +1,11 @@
 
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+  --default-font: "Roboto", system-ui, sans-serif;
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Poppins", sans-serif;
+  --hero-heading-font: "Space Grotesk", sans-serif;
 }
+
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
@@ -52,6 +54,15 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  overflow-x: hidden;
+}
+.imgtoporto-title,
+.hero-title,
+.section-heading, .navmenu, .page-title, .section-title{
+  font-family: var(--hero-heading-font);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
 }
 
 a {
@@ -724,6 +735,13 @@ h6 {
   
   .footer-column {
     flex: 0 0 100%;
+  }
+  .footer-links {
+    padding-left: 0;
+  }
+
+  .footer-links li {
+    padding-left: 0;
   }
 }
 .footer-marquee {
@@ -2646,7 +2664,71 @@ section,
   background: #444;
 }
 
+@media (max-width: 768px) {
+  .testimonialhomeV2-container {
+    flex-direction: column;
+  }
 
+  .testimonialhomeV2-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .testimonialhomeV2-image img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .testimonialhomeV2-content {
+    padding: 30px 20px;
+  }
+
+  .testimonialhomeV2-profile-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .testimonialhomeV2-text {
+    font-size: 15px;
+  }
+
+  .testimonialhomeV2-name {
+    font-size: 17px;
+  }
+
+  .testimonialhomeV2-role {
+    font-size: 13px;
+  }
+
+  .testimonialhomeV2-nav-btn {
+    padding: 8px 14px;
+    font-size: 18px;
+  }
+
+  .testimonialhomeV2-nav {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonialhomeV2-text {
+    font-size: 14px;
+  }
+
+  .testimonialhomeV2-nav-btn {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+
+  .testimonialhomeV2-dots {
+    gap: 6px;
+  }
+
+  .testimonialhomeV2-dot {
+    width: 8px;
+    height: 8px;
+  }
+}
 /*--------------------------------------------------------------
 # steps/workflow Section Section
 --------------------------------------------------------------*/
@@ -3312,4 +3394,139 @@ label {
   .phone-group input {
     font-size: 0.95rem;
   }
+}
+/*------------------------------------------------------------
+sekatbos
+--------------------------------------------------------------*/
+.section-divider {
+  width: 100%;
+  overflow: hidden;
+  position: relative; /* ✅ penting agar ::before bisa menempel */
+}
+.section-divider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* overlay hitam semi-transparan */
+  z-index: 1;
+}
+.section-divider img {
+  display: block;
+  width: 100%;
+  height:auto;
+  object-fit: cover;
+  transition: opacity 0.5s ease-in-out;
+  aspect-ratio: 21 / 9;
+  filter: blur(5px);
+}
+.divider-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 9/16 = 0.5625 */
+  overflow: hidden;
+}
+
+.divider-wrapper img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/*------------------------------------------------------------
+sekat2bos
+--------------------------------------------------------------*/
+/* Global fix (jika belum ada) */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Section Styling */
+.imgtoporto-section {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  background-color: transparent; /* ubah dari #ffffff jadi transparan */
+  margin: 0;
+  padding: 0 !important;
+  
+}
+.imgtoporto-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.imgtoporto-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Swiper Setup */
+.swiper-wrapper {
+  display: flex;
+}
+
+.swiper-slide {
+  width: 100% !important;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Caption */
+.imgtoporto-caption {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  color: white;
+}
+
+.imgtoporto-caption .container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.imgtoporto-caption h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.imgtoporto-caption a {
+  color: white;
+  border: 1px solid white;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.imgtoporto-caption a:hover {
+  background: white;
+  color: black;
+}
+
+/* Pagination styling */
+.swiper-pagination-bullet {
+  background-color: #a3802f;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
 }
