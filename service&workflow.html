@@ -17,6 +17,7 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -341,11 +342,52 @@
         </div>
       </div>
     </section>
+
+    <section class="testimonialhomeV2-section">
+      <div class="testimonialhomeV2-container"data-aos="zoom-in">
+        <div class="testimonialhomeV2-image">
+          <img id="testimonial-image"  src="img/after.png" alt="Interior Example">
+        </div>
+        <div class="testimonialhomeV2-content" data-aos="zoom-in">
+          <div class="testimonialhomeV2-card-wrapper" data-aos="zoom-in">
+    
+            <!-- Card 1 -->
+            <div class="testimonialhomeV2-card testimonialhomeV2-active">
+              <img src="img/testimonials/rolland.jpeg" alt="User Photo" class="testimonialhomeV2-profile-img">
+              <p class="testimonialhomeV2-text">"Desainnya keren dan pengerjaannya rapi. Saya puas!"</p>
+              <h3 class="testimonialhomeV2-name">Samuel Schick</h3>
+              <p class="testimonialhomeV2-role">President, CEO</p>
+            </div>
+    
+            <!-- Card 2 -->
+            <div class="testimonialhomeV2-card">
+              <img src="img/testimonials/rolland.jpeg" alt="User Photo" class="testimonialhomeV2-profile-img">
+              <p class="testimonialhomeV2-text">"Pelayanan sangat baik, hasil melebihi ekspektasi."</p>
+              <h3 class="testimonialhomeV2-name">Emily Carter</h3>
+              <p class="testimonialhomeV2-role">Marketing Director</p>
+            </div>
+    
+            <!-- Navigasi Panah -->
+            <div class="testimonialhomeV2-nav">
+              <button class="testimonialhomeV2-nav-btn prev">&#10094;</button>
+              <button class="testimonialhomeV2-nav-btn next">&#10095;</button>
+            </div>
+    
+            <!-- Dot Navigasi -->
+            <div class="testimonialhomeV2-dots">
+              <span class="testimonialhomeV2-dot testimonialhomeV2-active" data-index="0"></span>
+              <span class="testimonialhomeV2-dot" data-index="1"></span>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </section>
     
 <!--GET NOW SECTION-->   
-<section id="Workflow" class="Workflow section">
+<section id="Product" class="Workflow section">
   <div class="container section-title" data-aos="fade-up">
-    <BR><h2>Workflow</h2>
+    <BR><h2>Product</h2>
     <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
   </div>
 </section>
@@ -362,7 +404,7 @@
       <div class="category-info">
         <h2>Dapur</h2>
         <p>Temukan inspirasi desain interior dapur yang sesuai dengan rumah kamu!</p>
-        <a href="#" class="see-more">See More</a>
+        <a href="portfolio-details.html" class="see-more">See More</a>
       </div>
     </div>
 
@@ -378,7 +420,7 @@
     <div class="category-info">
       <h2>Dapur</h2>
       <p>Temukan inspirasi desain interior dapur yang sesuai dengan rumah kamu!</p>
-      <a href="#" class="see-more">See More</a>
+      <a href="portfolio-details.html" class="see-more">See More</a>
     </div>
   </div>
 
@@ -392,7 +434,7 @@
     <div class="category-info">
       <h2>Dapur</h2>
       <p>Temukan inspirasi desain interior dapur yang sesuai dengan rumah kamu!</p>
-      <a href="#" class="see-more">See More</a>
+      <a href="portfolio-details.html" class="see-more">See More</a>
     </div>
   </div>
 </section>
@@ -576,6 +618,50 @@
 
   <!-- Main JS File -->
   <script src="js/main.js"></script>
+  <script>    
+  document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll('.testimonialhomeV2-card');
+    const dots = document.querySelectorAll('.testimonialhomeV2-dot');
+    const prevBtn = document.querySelector('.testimonialhomeV2-nav-btn.prev');
+    const nextBtn = document.querySelector('.testimonialhomeV2-nav-btn.next');
+    const image = document.getElementById('testimonial-image');
+
+    // Daftar gambar untuk tiap review
+    const images = [
+      'img/after.png',         // Gambar untuk testimonial 0
+      'img/product-portfolio/hotel1.jpg'      // Gambar untuk testimonial 1
+    ];
+
+    let currentIndex = 0;
+
+    function showCard(index) {
+      cards.forEach((card, i) => {
+        card.classList.toggle('testimonialhomeV2-active', i === index);
+        dots[i].classList.toggle('testimonialhomeV2-active', i === index);
+      });
+      image.src = images[index];
+      currentIndex = index;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      let newIndex = (currentIndex - 1 + cards.length) % cards.length;
+      showCard(newIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      let newIndex = (currentIndex + 1) % cards.length;
+      showCard(newIndex);
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        let index = parseInt(dot.getAttribute('data-index'));
+        showCard(index);
+      });
+    });
+  });
+
+</script>
 
 </body>
 
