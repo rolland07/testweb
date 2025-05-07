@@ -58,7 +58,7 @@ body {
 }
 .imgtoporto-title,
 .hero-title,
-.section-heading, .navmenu, .page-title, .section-title{
+.section-heading, .navmenu, .page-title, .section-title .service-contentS{
   font-family: var(--hero-heading-font);
   font-weight: 700;
   text-transform: uppercase;
@@ -83,7 +83,7 @@ h4,
 h5,
 h6 {
   color: var(--heading-color);
-  font-family: var(--heading-font);
+  font-family: var(--hero-heading-font);
 }
 
 /* Pulsating Play Button
