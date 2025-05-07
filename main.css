@@ -435,6 +435,9 @@ h6 {
     margin-right: 10px;
     cursor: pointer;
     transition: color 0.3s;
+    .cta-btn{
+      display: none;
+    }
   }
 
   .navmenu {
@@ -2247,6 +2250,9 @@ section,
   .insta-grid {
     column-count: 2;
   }
+  .insta-button{
+    display: none;
+  }
 }
 
 .insta-button {
@@ -3702,4 +3708,9 @@ ktrng tmbhn
 .keterangantmbhn-button:hover {
   background-color: #fff;
   color: #42282B;
+}
+@media (max-width: 768px) {
+  .keterangantmbhn-image {
+    display: none;
+  }
 }
