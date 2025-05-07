@@ -1878,6 +1878,20 @@ section,
   font-weight: 700;
   color: color-mix(in srgb, var(--default-color), transparent 40%);
 }
+@media (max-width: 768px) {
+  .stats .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .stats .col-lg-3,
+  .stats .col-md-6 {
+    width: 100% !important;
+    flex: unset;
+    max-width: 100%;
+  }
+}
 
 /*--------------------------------------------------------------
 # Portfolio Section
