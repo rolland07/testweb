@@ -833,35 +833,53 @@ h6 {
 /*--------------------------------------------------------------
 # Scroll Top Button
 --------------------------------------------------------------*/
-.scroll-top {
+.scroll-wrapper {
   position: fixed;
-  visibility: hidden;
-  opacity: 0;
-  right: 15px;
-  bottom: -15px;
-  z-index: 99999;
-  background-color: var(--accent-color);
-  width: 44px;
-  height: 44px;
-  border-radius: 50px;
-  transition: all 0.4s;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
 }
 
-.scroll-top i {
+.main-button, .sub-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--accent-color, #6c757d);
+  color: white;
   font-size: 24px;
-  color: var(--contrast-color);
-  line-height: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.scroll-top:hover {
-  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
-  color: var(--contrast-color);
+.sub-button {
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0);
 }
 
-.scroll-top.active {
-  visibility: visible;
+.scroll-wrapper.show-buttons .cs-button {
+  bottom: 70px;
   opacity: 1;
-  bottom: 15px;
+  visibility: visible;
+  transform: translateY(-10px);
+}
+
+.scroll-wrapper.show-buttons .scroll-top {
+  bottom: 140px;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-10px);
+}
+
+.scroll-top:hover, .cs-button:hover, .main-button:hover {
+  background-color: color-mix(in srgb, var(--accent-color), white 20%);
 }
 
 /*--------------------------------------------------------------
@@ -1000,7 +1018,7 @@ section,
 
 .hero:before {
   content: "";
-  background: color-mix(in srgb, var(--background-color, #000), transparent 30%);
+  background: color-mix(in srgb, var(--background-color, #fff), transparent 30%);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -1021,7 +1039,7 @@ section,
 .arch-title {
   font-size: 5rem;
   font-weight: 900;
-  color: #fff;
+  color: #ffffff;
   margin: 0;
 }
 
@@ -1042,8 +1060,8 @@ section,
   font-size: 5rem;
   font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 2px #fff;
-  text-stroke: 2px #fff;
+  -webkit-text-stroke: 2px #ffffff;
+  text-stroke: 2px #000;
   margin: 0;
 }
 
@@ -1058,14 +1076,14 @@ section,
 .build-title {
   font-size: 5rem;
   font-weight: 900;
-  color: #fff;
+  color: #ffffff;
   margin: 0;
 }
 
 .journey h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff;
   margin: 0;
   text-align: left;
 }
@@ -1088,6 +1106,63 @@ section,
   .middle-row, .bottom-row {
     flex-direction: column;
   }
+}
+/* Keyframes untuk fade + slide dari bawah ke atas */
+
+/* === Animasi saat load === */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elemen yang dianimasikan */
+.arch-title,
+.designs-title,
+.build-title,
+.journey h2 {
+  opacity: 0;
+  animation: fadeSlideUp 1s ease-out forwards;
+}
+
+/* Delay per elemen agar muncul berurutan */
+.arch-title {
+  animation-delay: 0.2s;
+}
+.designs-title {
+  animation-delay: 0.6s;
+}
+.build-title {
+  animation-delay: 1.0s;
+}
+.journey h2:nth-child(1) {
+  animation-delay: 1.4s;
+}
+.journey h2:nth-child(2) {
+  animation-delay: 1.8s;
+}
+
+/* === Hover Effect === */
+.arch-title,
+.designs-title,
+.build-title,
+.journey h2 {
+  transition: transform 0.4s ease, opacity 0.4s ease, text-shadow 0.4s ease;
+  will-change: transform, opacity;
+}
+
+.arch-title:hover,
+.designs-title:hover,
+.build-title:hover,
+.journey h2:hover {
+  transform: translateY(-10px) scale(1.03);
+  text-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+  opacity: 1;
 }
 
 /*--------------------------------------------------------------
@@ -2170,7 +2245,7 @@ section,
 }
 @media (max-width: 480px) {
   .insta-grid {
-    column-count: 1;
+    column-count: 2;
   }
 }
 
@@ -3529,4 +3604,102 @@ html, body {
 }
 .swiper-pagination-bullet-active {
   opacity: 1;
+}
+
+/*--------------------------------------------------------------------------------
+ktrng tmbhn
+-----------------------------------------------------------------------------------*/
+.keterangantmbhn {
+  padding: 60px 20px;
+  background: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.keterangantmbhn-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.keterangantmbhn-image {
+  flex: 1;
+  max-width: 500px;
+  position: relative;
+  border-radius: 50%/10%;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.keterangantmbhn-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.keterangantmbhn-logo {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.keterangantmbhn-logo img {
+  width: 30px;
+  height: 30px;
+}
+
+.keterangantmbhn-content {
+  flex: 1;
+  max-width: 500px;
+  color: #42282B;
+  text-align: center;
+}
+
+.keterangantmbhn-content h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.keterangantmbhn-content p {
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.keterangantmbhn-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 40px;
+  margin-bottom: 30px;
+}
+
+.keterangantmbhn-stats div {
+  font-size: 18px;
+  color: #42282B;
+}
+
+.keterangantmbhn-stats strong {
+  font-size: 24px;
+}
+
+.keterangantmbhn-button {
+  display: inline-block;
+  background-color: #42282B;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #42282B;
+  transition: background 0.3s;
+}
+
+.keterangantmbhn-button:hover {
+  background-color: #fff;
+  color: #42282B;
 }
