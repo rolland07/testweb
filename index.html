@@ -1189,7 +1189,17 @@
       
       
     });
-    
+    document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth <= 768) {
+      const instaItems = document.querySelectorAll(".insta-item");
+      instaItems.forEach(item => {
+        item.style.cursor = "pointer";
+        item.addEventListener("click", function () {
+          window.open("https://www.instagram.com/lambordistudio", "_blank");
+        });
+      });
+    }
+  });
   </script>
 
 </body>
