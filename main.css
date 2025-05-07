@@ -435,11 +435,11 @@ h6 {
     margin-right: 10px;
     cursor: pointer;
     transition: color 0.3s;
-    .cta-btn{
-      display: none;
-    }
-  }
 
+  }
+  .cta-btn{
+    display: none;
+  }
   .navmenu {
     padding: 0;
     z-index: 9997;
