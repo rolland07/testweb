@@ -67,14 +67,17 @@
   /**
    * Scroll top button
    */
-  let scrollTop = document.querySelector('.scroll-top');
+  const scrollWrapper = document.querySelector('.scroll-wrapper');
+  const toggleBtn = document.getElementById('toggle-buttons');
+  const scrollTopBtn = document.querySelector('.scroll-top');
 
-  function toggleScrollTop() {
-    if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-    }
-  }
-  scrollTop.addEventListener('click', (e) => {
+  // Toggle tampilnya tombol tambahan
+  toggleBtn.addEventListener('click', () => {
+    scrollWrapper.classList.toggle('show-buttons');
+  });
+
+  // Scroll ke atas
+  scrollTopBtn.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({
       top: 0,
@@ -82,9 +85,18 @@
     });
   });
 
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
+  // Munculkan tombol utama saat scroll
+  function toggleScrollTopVisibility() {
+    if (window.scrollY > 100) {
+      scrollWrapper.classList.add('active');
+    } else {
+      scrollWrapper.classList.remove('active');
+      scrollWrapper.classList.remove('show-buttons'); // Sembunyikan tombol lain juga
+    }
+  }
 
+  window.addEventListener('load', toggleScrollTopVisibility);
+  window.addEventListener('scroll', toggleScrollTopVisibility);
   /**
    * Animation on scroll function and init
    */
