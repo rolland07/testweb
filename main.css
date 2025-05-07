@@ -2919,22 +2919,23 @@ section,
 }
 
 /* Responsive: sembunyikan di mobile */
-@media (max-width: 768px) {
-  .arrow {
-    display: none;
-  }
+@media (max-width: 1024px) {
   .steps-container {
-    flex-wrap: wrap; /* Izinkan wrapping di mobile */
+    flex-wrap: wrap; /* Izinkan item melipat */
     justify-content: center;
+    overflow-x: hidden; /* Hilangkan scroll horizontal */
   }
 
   .step-item {
-    width: 100%;
-    max-width: 250px;
+    width: 45%; /* Tampilkan 2 item per baris */
     margin-bottom: 2rem;
+    flex: 0 0 auto;
+  }
+
+  .arrow {
+    display: none; /* Sembunyikan panah di tablet juga */
   }
 }
-
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
