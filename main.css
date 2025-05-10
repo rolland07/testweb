@@ -1905,7 +1905,10 @@ section,
 --------------------------------------------------------------*/
 .stats {
   position: relative;
+  align-items: center;
+  justify-items: center;
 }
+
 
 .stats img {
   position: absolute;
@@ -1964,28 +1967,26 @@ section,
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 20px;
+  align-items: center;
+  justify-items: center;
 }
-@media (max-width: 800px) , (min-width: 400px) {
+@media (max-width: 768px) {
   .stats .row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    justify-items: center;
-    align-items: center;
+     display: grid;
+      grid-template-columns: repeat(2, 1fr);;
+      gap: 20px;
+      align-items: center;
+      justify-items: center;
   }
 
   .stats .col-lg-3,
   .stats .col-md-6 {
     width: 100% !important;
-    max-width: 100%;
     flex: unset;
-  }
-
-  .stats .stats-item {
-    text-align: center;
+    max-width: 100%;
   }
 }
-@media (max-width: 399px) {
+@media (max-width: 370px) {
   .stats .row {
     display: grid;
     grid-template-columns: 1fr;
@@ -2005,7 +2006,6 @@ section,
     text-align: center;
   }
 }
-
 /*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
