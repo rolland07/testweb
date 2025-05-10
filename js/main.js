@@ -327,7 +327,7 @@
       if (!valid) return;
 
       // Kirim ke WhatsApp
-      const nomorWA = '6288214092680';
+      const nomorWA = '6281188088018';
       const pesan = `Halo! Saya ${nama}, ingin konsultasi tentang ${jenis}. Nomor saya: ${telepon}, email: ${email}`;
       const urlWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
       window.open(urlWA, '_blank');
