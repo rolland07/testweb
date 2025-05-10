@@ -1965,20 +1965,44 @@ section,
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 20px;
 }
-@media (max-width: 768px) {
+@media (max-width: 800px) , (min-width: 400px) {
   .stats .row {
-     display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 20px;
-      align-items: center;
-      justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
   }
 
   .stats .col-lg-3,
   .stats .col-md-6 {
     width: 100% !important;
-    flex: unset;
     max-width: 100%;
+    flex: unset;
+  }
+
+  .stats .stats-item {
+    text-align: center;
+  }
+}
+@media (max-width: 399px) {
+  .stats .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .stats .col-lg-3,
+  .stats .col-md-6 {
+    width: 100% !important;
+    max-width: 100%;
+    flex: unset;
+  }
+
+  .stats .stats-item {
+    text-align: center;
   }
 }
 
@@ -2931,12 +2955,9 @@ section,
   padding-top: 0.5rem;
 }
 .steps-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 3rem;
-  flex-wrap: nowrap; /* Mencegah wrapping */
-  overflow-x: auto;   /* Supaya scroll horizontal jika terlalu sempit */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
   padding: 2rem 1rem;
   max-width: 100%;
 }
@@ -3011,11 +3032,24 @@ section,
   display: none;
 }
 
+/* --- UNTUK DESKTOP >= 1025px --- */
+@media (min-width: 1580px) {
+  .steps-container {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .arrow {
+    display: block;
+  }
+}
+
 /* Responsive: sembunyikan di mobile */
-@media (max-width: 1024px) {
+@media (max-width: 1579px) {
   .steps-container {
     flex-wrap: wrap; /* Izinkan item melipat */
     justify-content: center;
+    justify-items: center;
     overflow-x: hidden; /* Hilangkan scroll horizontal */
   }
 
@@ -3027,6 +3061,49 @@ section,
 
   .arrow {
     display: none; /* Sembunyikan panah di tablet juga */
+  }
+}
+
+/* --- UNTUK MOBILE <= 767px --- */
+@media (max-width: 1024px) {
+  .step-item {
+    width: 45%;
+  }
+
+  .arrow {
+    display: none;
+  }
+  .steps-container {
+  justify-items: center;
+}
+}
+
+/* --- UNTUK MOBILE <= 767px --- */
+@media (max-width: 767px) {
+  .steps-container {
+  justify-items: center;
+}
+  .step-item {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 2rem;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .icon-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .step-item h3 {
+    font-size: 1rem;
+  }
+
+  .step-item p {
+    font-size: 0.85rem;
   }
 }
 /*--------------------------------------------------------------
