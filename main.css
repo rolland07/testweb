@@ -58,7 +58,7 @@ body {
 }
 .imgtoporto-title,
 .hero-title,
-.section-heading, .navmenu, .page-title, .section-title .service-contentS{
+.section-heading, .navmenu, .page-title, .section-title .service-contentS, .worksection-title{
   font-family: var(--hero-heading-font);
   font-weight: 700;
   text-transform: uppercase;
@@ -295,9 +295,62 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Desktop Navigation */
+.dropdown {
+  position: fixed; /* Gunakan fixed agar tetap di tempatnya */
+  right: 20px;
+  top: 15px; /* Posisi tetap di bagian atas */
+  z-index: 1000;
+}
+
+.dropdown span {
+  color: white;
+}
+
+.dropdown a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-dropdown {
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-left: 8px;
+}
+
+.navmenu .dropdown ul a {
+  color: white !important;
+}
+
+.navmenu .bi-list.toggle-dropdown {
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+}
+
+/* Desktop Navigation */
 @media (min-width: 1200px) {
   .navmenu {
     padding: 0;
+  }
+
+  .dropdown {
+    display: none;
+  }
+
+  .navmenu > ul {
+    display: flex;
   }
 
   .navmenu ul {
@@ -312,12 +365,12 @@ h6 {
     position: relative;
   }
 
-  .navmenu>ul>li {
+  .navmenu > ul > li {
     white-space: nowrap;
     padding: 15px 14px;
   }
 
-  .navmenu>ul>li:last-child {
+  .navmenu > ul > li:last-child {
     padding-right: 0;
   }
 
@@ -344,7 +397,7 @@ h6 {
     transition: 0.3s;
   }
 
-  .navmenu>ul>li>a:before {
+  .navmenu > ul > li > a:before {
     content: "";
     position: absolute;
     height: 2px;
@@ -357,13 +410,13 @@ h6 {
   }
 
   .navmenu a:hover:before,
-  .navmenu li:hover>a:before,
+  .navmenu li:hover > a:before,
   .navmenu .active:before {
     visibility: visible;
     width: 100%;
   }
 
-  .navmenu li:hover>a,
+  .navmenu li:hover > a,
   .navmenu .active,
   .navmenu .active:focus {
     color: var(--nav-color);
@@ -402,11 +455,11 @@ h6 {
 
   .navmenu .dropdown ul a:hover,
   .navmenu .dropdown ul .active:hover,
-  .navmenu .dropdown ul li:hover>a {
+  .navmenu .dropdown ul li:hover > a {
     color: var(--nav-dropdown-hover-color);
   }
 
-  .navmenu .dropdown:hover>ul {
+  .navmenu .dropdown:hover > ul {
     opacity: 1;
     top: 100%;
     visibility: visible;
@@ -418,7 +471,7 @@ h6 {
     visibility: hidden;
   }
 
-  .navmenu .dropdown .dropdown:hover>ul {
+  .navmenu .dropdown .dropdown:hover > ul {
     opacity: 1;
     top: 0;
     left: -100%;
@@ -431,101 +484,83 @@ h6 {
   .mobile-nav-toggle {
     color: var(--nav-color);
     font-size: 28px;
-    line-height: 0;
     margin-right: 10px;
     cursor: pointer;
     transition: color 0.3s;
-
   }
-  .cta-btn{
+
+  .navmenu > ul {
     display: none;
   }
-  .navmenu {
-    padding: 0;
-    z-index: 9997;
-  }
 
-  .navmenu ul {
+  .cta-btn {
+    display: none;
+  }
+  
+  /* Dropdown menu */
+  .dropdown {
+    /* Posisi fixed agar tidak bergerak saat di-klik */
+    position: fixed;
+    right: 20px; 
+    top: 15px;
+    z-index: 1000;
+  }
+  
+  /* Perbaikan untuk dropdown menu */
+  .dropdown ul {
     display: none;
     list-style: none;
     position: absolute;
-    inset: 60px 20px 20px 20px;
+    top: 100%; /* Posisi relatif terhadap dropdown button */
+    right: 0;
     padding: 10px 0;
-    margin: 0;
+    margin: 10px 0 0 0; /* Beri margin atas agar tidak langsung nempel */
     border-radius: 6px;
-    background-color: var(--nav-mobile-background-color);
-    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-    box-shadow: none;
-    overflow-y: auto;
-    transition: 0.3s;
+    background-color: rgba(33, 37, 41, 0.9); /* Background gelap untuk dropdown */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     z-index: 9998;
+    width: max-content;
+    min-width: 200px;
+  }
+  
+  /* Menampilkan dropdown saat active */
+  .dropdown.open ul {
+    display: block;
   }
 
-  .navmenu a,
-  .navmenu a:focus {
-    color: var(--nav-dropdown-color);
+  .dropdown ul li a,
+  .dropdown ul li a:focus {
+    color: white !important;
     padding: 10px 20px;
-    font-family: var(--nav-font);
-    font-size: 17px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
     white-space: nowrap;
     transition: 0.3s;
   }
 
-  .navmenu a i,
-  .navmenu a:focus i {
-    font-size: 12px;
+  .dropdown ul li a:hover {
+    color: #f0f0f0 !important;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown a i,
+  .dropdown a:focus i {
+    font-size: 24px;
     line-height: 0;
     margin-left: 5px;
-    width: 30px;
-    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     transition: 0.3s;
-    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
   }
 
-  .navmenu a i:hover,
-  .navmenu a:focus i:hover {
-    background-color: var(--accent-color);
-    color: var(--contrast-color);
-  }
-
-  .navmenu a:hover,
-  .navmenu .active,
-  .navmenu .active:focus {
-    color: var(--nav-dropdown-hover-color);
-  }
-
-  .navmenu .active i,
-  .navmenu .active:focus i {
-    background-color: var(--accent-color);
-    color: var(--contrast-color);
-    transform: rotate(180deg);
-  }
-
-  .navmenu .dropdown ul {
-    position: static;
-    display: none;
-    z-index: 99;
-    padding: 10px 0;
-    margin: 10px 20px;
-    background-color: var(--nav-dropdown-background-color);
-    transition: all 0.5s ease-in-out;
-  }
-
-  .navmenu .dropdown ul ul {
-    background-color: rgba(33, 37, 41, 0.1);
-  }
-
-  .navmenu .dropdown>.dropdown-active {
-    display: block;
-    background-color: rgba(33, 37, 41, 0.03);
+  .dropdown a i:hover,
+  .dropdown a:focus i:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
   }
 
   .mobile-nav-active {
@@ -548,17 +583,30 @@ h6 {
     inset: 0;
     background: rgba(33, 37, 41, 0.8);
     transition: 0.3s;
+    display: block;
   }
 
-  .mobile-nav-active .navmenu>ul {
+  .mobile-nav-active .navmenu > ul {
+    display: block;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .cta-btn {
+    display: none;
+  }
+  
+  .navmenu ul > li {
+    display: none;
+  }
+
+  /* Pastikan dropdown menu button tetap tampil */
+  .dropdown {
     display: block;
   }
 }
-@media (max-width: 768px) {
-  .cta-btn{
-    display: none;
-  }
-}
+/* JavaScript untuk toggle dropdown menu */
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
@@ -999,7 +1047,29 @@ section,
   margin-bottom: 0;
   color: color-mix(in srgb, var(--default-color) 90%, white 50%);
 }
+/*--------------------------------------------------------------
+# workflow Section Titles
+--------------------------------------------------------------*/
+.worksection-title {
+  padding-bottom: 10px;
+  position: relative;
+}
 
+.worksection-title h2 {
+  font-size: 45px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  text-align: center;
+}
+
+
+
+.worksection-title p {
+  margin-bottom: 0;
+  color: color-mix(in srgb, var(--default-color) 90%, white 50%);
+}
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
@@ -1713,12 +1783,12 @@ section,
 
 .marquee-content {
   display: inline-flex;
-  animation: scroll-left 20s linear infinite;
+  animation: scroll-left 60s linear infinite;
   gap: 40px;
 }
 
 .marquee-right .marquee-content {
-  animation: scroll-right 20s linear infinite;
+  animation: scroll-right 60s linear infinite;
 }
 
 .marquee-content img {
