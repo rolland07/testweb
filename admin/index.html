@@ -3,8 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <title>Lambordi Blog Admin</title>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <script>
+      fetch("/admin/config.json")
+        .then((res) => res.json())
+        .then((config) => {
+          window.CMS.init({ config });
+        });
+    </script>
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
