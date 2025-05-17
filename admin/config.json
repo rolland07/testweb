@@ -1,7 +1,6 @@
 {
   "backend": {
-    "name": "github",
-    "repo": "rolland07/testweb",
+    "name": "git-gateway",
     "branch": "main"
   },
   "media_folder": "img/blog",
@@ -19,6 +18,6 @@
         { "label": "Image", "name": "image", "widget": "image" },
         { "label": "Body", "name": "body", "widget": "markdown" }
       ]
-    } 
+    }
   ]
 }
