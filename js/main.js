@@ -400,40 +400,38 @@ forms.forEach((selector) => {
 
 
 // Fungsi untuk memuat blog posts
-async function loadInspirationPosts() {
+// Fetch posts dari GitHub API
+async function loadPosts() {
+  const container = document.querySelector('.for-your-inspiration');
+  if (!container) return;
+
   try {
     const response = await fetch('https://api.github.com/repos/rolland07/testweb/contents/post');
     const posts = await response.json();
     
-    let postsHTML = '';
-    
+    let html = '';
     for (const post of posts) {
       if (post.name.endsWith('.md')) {
-        const postResponse = await fetch(post.download_url);
-        const text = await postResponse.text();
+        const res = await fetch(post.download_url);
+        const text = await res.text();
+        const [_, frontmatter, content] = text.split('---');
         
-        // Ekstrak metadata dan konten
-        const meta = text.match(/---\n([\s\S]*?)\n---/)[1];
-        const content = text.split('---\n')[2];
-        
-        // Konversi ke HTML
-        postsHTML += `
-          <div class="inspiration-item">
-            <img src="${meta.match(/thumbnail: "(.*?)"/)[1]}" alt="">
-            <span class="category">${meta.match(/category: "(.*?)"/)[1]}</span>
-            <h3>${meta.match(/title: "(.*?)"/)[1]}</h3>
-            <p class="meta">${meta.match(/author: "(.*?)"/)[1]} • ${new Date(meta.match(/date: (.*?)\n/)[1]).toLocaleDateString()}</p>
-            <div class="content">${content}</div>
+        html += `
+          <div class="post">
+            <h3>${post.name.replace('.md', '')}</h3>
+            <pre>${content}</pre>
           </div>
         `;
       }
     }
     
-    document.querySelector('.for-your-inspiration').innerHTML = postsHTML;
+    container.innerHTML = html || '<p>Belum ada post</p>';
   } catch (error) {
-    console.error('Error loading posts:', error);
+    console.error('Error:', error);
+    container.innerHTML = '<p>Error loading posts</p>';
   }
 }
 
-// Panggil fungsi saat halaman dimuat
-window.addEventListener('DOMContentLoaded', loadInspirationPosts);
+// Jalankan saat halaman load
+window.addEventListener('DOMContentLoaded', loadPosts);
+
