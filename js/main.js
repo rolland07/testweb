@@ -408,14 +408,14 @@ async function loadPosts() {
   try {
     const response = await fetch('https://api.github.com/repos/rolland07/testweb/contents/post');
     const posts = await response.json();
-    
+
     let html = '';
     for (const post of posts) {
       if (post.name.endsWith('.md')) {
         const res = await fetch(post.download_url);
         const text = await res.text();
         const [_, frontmatter, content] = text.split('---');
-        
+
         html += `
           <div class="post">
             <h3>${post.name.replace('.md', '')}</h3>
@@ -432,6 +432,5 @@ async function loadPosts() {
   }
 }
 
-// Jalankan saat halaman load
 window.addEventListener('DOMContentLoaded', loadPosts);
 
