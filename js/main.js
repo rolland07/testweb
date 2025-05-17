@@ -397,26 +397,43 @@ forms.forEach((selector) => {
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
-// Fetch blog posts dari GitHub
-async function loadBlogPosts() {
-  const response = await fetch('https://api.github.com/repos/rolland07/testweb/contents/post?ref=main');
-  const posts = await response.json();
 
-  posts.forEach(async post => {
-    if (post.name.endsWith('.md')) {
-      const postResponse = await fetch(post.download_url);
-      const text = await postResponse.text();
-      const content = parseMarkdown(text); // Fungsi parse markdown
-      renderPost(content); // Fungsi render ke HTML
+
+// Fungsi untuk memuat blog posts
+async function loadInspirationPosts() {
+  try {
+    const response = await fetch('https://api.github.com/repos/rolland07/testweb/contents/post');
+    const posts = await response.json();
+    
+    let postsHTML = '';
+    
+    for (const post of posts) {
+      if (post.name.endsWith('.md')) {
+        const postResponse = await fetch(post.download_url);
+        const text = await postResponse.text();
+        
+        // Ekstrak metadata dan konten
+        const meta = text.match(/---\n([\s\S]*?)\n---/)[1];
+        const content = text.split('---\n')[2];
+        
+        // Konversi ke HTML
+        postsHTML += `
+          <div class="inspiration-item">
+            <img src="${meta.match(/thumbnail: "(.*?)"/)[1]}" alt="">
+            <span class="category">${meta.match(/category: "(.*?)"/)[1]}</span>
+            <h3>${meta.match(/title: "(.*?)"/)[1]}</h3>
+            <p class="meta">${meta.match(/author: "(.*?)"/)[1]} • ${new Date(meta.match(/date: (.*?)\n/)[1]).toLocaleDateString()}</p>
+            <div class="content">${content}</div>
+          </div>
+        `;
+      }
     }
-  });
+    
+    document.querySelector('.for-your-inspiration').innerHTML = postsHTML;
+  } catch (error) {
+    console.error('Error loading posts:', error);
+  }
 }
 
-// Contoh fungsi parse sederhana
-function parseMarkdown(text) {
-  const [frontmatter, content] = text.split('---\n').slice(1);
-  return {
-    ...yaml.load(frontmatter), // Gunakan library js-yaml
-    body: marked.parse(content) // Gunakan library marked.js
-  };
-}
+// Panggil fungsi saat halaman dimuat
+window.addEventListener('DOMContentLoaded', loadInspirationPosts);
