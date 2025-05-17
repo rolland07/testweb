@@ -397,4 +397,26 @@ forms.forEach((selector) => {
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+// Fetch blog posts dari GitHub
+async function loadBlogPosts() {
+  const response = await fetch('https://api.github.com/repos/rolland07/testweb/contents/post?ref=main');
+  const posts = await response.json();
 
+  posts.forEach(async post => {
+    if (post.name.endsWith('.md')) {
+      const postResponse = await fetch(post.download_url);
+      const text = await postResponse.text();
+      const content = parseMarkdown(text); // Fungsi parse markdown
+      renderPost(content); // Fungsi render ke HTML
+    }
+  });
+}
+
+// Contoh fungsi parse sederhana
+function parseMarkdown(text) {
+  const [frontmatter, content] = text.split('---\n').slice(1);
+  return {
+    ...yaml.load(frontmatter), // Gunakan library js-yaml
+    body: marked.parse(content) // Gunakan library marked.js
+  };
+}
