@@ -1209,57 +1209,8 @@ async function loadPosts() {
     container.innerHTML = '<p>Error loading blog posts.</p>';
   }
 }
-
 window.addEventListener('DOMContentLoaded', loadPosts);
-console.log('Post berhasil dimuat:', posts);
-async function loadPosts(){
-  const grid=document.querySelector('.inspiration-grid');
-  if(!grid) return;
 
-  const list=await fetch(
-     'https://api.github.com/repos/rolland07/testweb/contents/post'
-  ).then(r=>r.json());
-
-  const mdFiles=list.filter(f=>f.name.endsWith('.md'));
-
-  const cards=await Promise.all(mdFiles.map(async f=>{
-    const raw=await fetch(f.download_url).then(r=>r.text());
-    const [,fm,body]=raw.split('---');
-    const meta=Object.fromEntries(fm.trim().split('\n')
-          .map(l=>l.split(':').map(s=>s.trim()))
-    );
-    const slug=meta.slug||f.name.replace('.md','');
-    return{
-      title:meta.title||slug,
-      date:new Date(meta.date).toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'}),
-      cat:meta.category||'General',
-      img:meta.image||'https://placehold.co/600x400?text=No+Image',
-      author:meta.author||'Admin',
-      excerpt:meta.excerpt||body.trim().slice(0,120)+'…',
-      url:`/post/${slug}.html`
-    };
-  }));
-
-  // sort terbaru
-  cards.sort((a,b)=>new Date(b.date)-new Date(a.date));
-
-  grid.innerHTML=cards.map(p=>`
-    <article class="blog-card" data-aos="fade-up">
-      <img src="${p.img}" alt="${p.title}">
-      <div class="body">
-        <span class="category">${p.cat}</span>
-        <h3>${p.title}</h3>
-        <p>${p.excerpt}</p>
-        <div class="meta">
-          <img src="/img/author-avatar.jpg" alt="${p.author}">
-          <span>${p.author} • ${p.date}</span>
-        </div>
-        <a class="read-more" href="${p.url}">Read More →</a>
-      </div>
-    </article>
-  `).join('');
-}
-window.addEventListener('DOMContentLoaded',loadPosts);
 
 </script>
 
