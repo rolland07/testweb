@@ -1,9 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Lambordi Blog Admin</title>
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  </head>
-  <body></body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lambordi CMS</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2.0.0/dist/cms.css" />
+</head>
+<body>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <script>
+    // Load config
+    CMS.registerPreviewStyle('/main.css'); // Sesuaikan path CSS Anda
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "rolland07/testweb",
+          branch: "main"
+        },
+        media_folder: "img/uploads",
+        public_folder: "/img/uploads",
+        collections: [
+          {
+            name: "blog",
+            label: "Blog Posts",
+            folder: "post",
+            fields: [
+              {label: "Title", name: "title", widget: "string"},
+              {label: "Publish Date", name: "date", widget: "datetime"},
+              {label: "Featured Image", name: "thumbnail", widget: "image"},
+              {label: "Body", name: "body", widget: "markdown"}
+            ]
+          }
+        ]
+      }
+    });
+  </script>
+</body>
 </html>
