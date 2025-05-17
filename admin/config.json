@@ -1,18 +1,18 @@
 {
   "backend": {
     "name": "github",
-    "repo": "rolland07/testweb",
+    "repo": "rolland07/testweb",  
     "branch": "main"
   },
-  "media_folder": "img/uploads",    
-  "public_folder": "/img/uploads", 
+  "media_folder": "img/uploads",
+  "public_folder": "/img/uploads",
   "collections": [
     {
       "name": "blog",
       "label": "Blog Posts",
-      "folder": "post",            
+      "folder": "post",
       "create": true,
-      "slug": "{{year}}-{{month}}-{{day}}-{{slug}}",
+      "slug": "{{year}}-{{month}}-{{day}}-{{slug}}",  // Ganti (( )) menjadi {{ }}
       "fields": [
         {"label": "Title", "name": "title", "widget": "string"},
         {"label": "Publish Date", "name": "date", "widget": "datetime"},
