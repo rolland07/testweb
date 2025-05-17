@@ -1216,9 +1216,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       window.netlifyIdentity.init();
+
+
+      if (window.location.hash.includes("invite_token")) {
+        window.netlifyIdentity.open("signup");
+      }
     }
   });
 </script>
+
 
 </body>
 </html>
