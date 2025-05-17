@@ -402,53 +402,70 @@ forms.forEach((selector) => {
 // Fungsi untuk memuat blog posts
 // Fetch posts dari GitHub API
 async function loadPosts() {
-  const container = document.querySelector('.for-your-inspiration');
+  const container = document.querySelector('.inspiration-posts');
   if (!container) {
-    console.error('Error: Container not found');
+    console.error('Container .inspiration-posts not found');
     return;
   }
 
   try {
     const response = await fetch('https://api.github.com/repos/rolland07/testweb/contents/post');
     const files = await response.json();
-    
-    let posts = files.filter(file => 
-      file.name.endsWith('.md') && 
-      file.size > 0 &&
-      file.download_url.includes('raw.githubusercontent.com')
-    );
+
+    const posts = [];
+
+    for (const file of files) {
+      if (!file.name.endsWith('.md') || !file.download_url) continue;
+
+      const res = await fetch(file.download_url);
+      const text = await res.text();
+
+      const [, rawFrontMatter, rawBody] = text.split('---');
+
+      if (!rawFrontMatter || !rawBody) continue;
+
+      const frontMatter = Object.fromEntries(
+        rawFrontMatter
+          .trim()
+          .split('\n')
+          .map(line => {
+            const [key, ...rest] = line.split(':');
+            return [key.trim(), rest.join(':').trim()];
+          })
+      );
+
+      posts.push({
+        title: frontMatter.title || file.name.replace('.md', ''),
+        date: frontMatter.date || '',
+        category: frontMatter.category || '',
+        author: frontMatter.author || '',
+        body: rawBody.trim()
+      });
+    }
 
     if (posts.length === 0) {
-      container.innerHTML = '<p>Tidak ada post yang valid</p>';
+      container.innerHTML = '<p>Tidak ada post yang tersedia.</p>';
       return;
     }
 
-    let html = '';
-    for (const post of posts) {
-      const res = await fetch(post.download_url);
-      const text = await res.text();
-      
-      if (!text.includes('---')) {
-        console.warn(`File ${post.name} tidak memiliki front matter`);
-        continue;
-      }
-      
-      const content = text.split('---')[2] || text;
-      html += `
-        <div class="post">
-          <h3>${post.name.replace('.md', '')}</h3>
-          <div>${content}</div>
+    // Render posts
+    container.innerHTML = posts
+      .map(post => `
+        <div class="inspiration-item">
+          <span class="category">${post.category}</span>
+          <h3>${post.title}</h3>
+          <p class="author">${post.author} • ${new Date(post.date).toLocaleDateString()}</p>
+          <div class="content">${post.body}</div>
         </div>
-      `;
-    }
-    
-    container.innerHTML = html || '<p>Post tidak bisa dimuat</p>';
-  } catch (error) {
-    console.error('Fetch error:', error);
-    container.innerHTML = '<p>Error loading posts. Cek console.</p>';
+      `)
+      .join('');
+
+  } catch (err) {
+    console.error('Error loading posts:', err);
+    container.innerHTML = '<p>Error loading blog posts.</p>';
   }
 }
-window.addEventListener('DOMContentLoaded', loadPosts);
 
+window.addEventListener('DOMContentLoaded', loadPosts);
 window.addEventListener('DOMContentLoaded', loadPosts);
 
