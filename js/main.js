@@ -403,34 +403,52 @@ forms.forEach((selector) => {
 // Fetch posts dari GitHub API
 async function loadPosts() {
   const container = document.querySelector('.for-your-inspiration');
-  if (!container) return;
+  if (!container) {
+    console.error('Error: Container not found');
+    return;
+  }
 
   try {
     const response = await fetch('https://api.github.com/repos/rolland07/testweb/contents/post');
-    const posts = await response.json();
+    const files = await response.json();
+    
+    let posts = files.filter(file => 
+      file.name.endsWith('.md') && 
+      file.size > 0 &&
+      file.download_url.includes('raw.githubusercontent.com')
+    );
+
+    if (posts.length === 0) {
+      container.innerHTML = '<p>Tidak ada post yang valid</p>';
+      return;
+    }
 
     let html = '';
     for (const post of posts) {
-      if (post.name.endsWith('.md')) {
-        const res = await fetch(post.download_url);
-        const text = await res.text();
-        const [_, frontmatter, content] = text.split('---');
-
-        html += `
-          <div class="post">
-            <h3>${post.name.replace('.md', '')}</h3>
-            <pre>${content}</pre>
-          </div>
-        `;
+      const res = await fetch(post.download_url);
+      const text = await res.text();
+      
+      if (!text.includes('---')) {
+        console.warn(`File ${post.name} tidak memiliki front matter`);
+        continue;
       }
+      
+      const content = text.split('---')[2] || text;
+      html += `
+        <div class="post">
+          <h3>${post.name.replace('.md', '')}</h3>
+          <div>${content}</div>
+        </div>
+      `;
     }
     
-    container.innerHTML = html || '<p>Belum ada post</p>';
+    container.innerHTML = html || '<p>Post tidak bisa dimuat</p>';
   } catch (error) {
-    console.error('Error:', error);
-    container.innerHTML = '<p>Error loading posts</p>';
+    console.error('Fetch error:', error);
+    container.innerHTML = '<p>Error loading posts. Cek console.</p>';
   }
 }
+window.addEventListener('DOMContentLoaded', loadPosts);
 
 window.addEventListener('DOMContentLoaded', loadPosts);
 
