@@ -1,22 +1,23 @@
 {
   "backend": {
-    "name": "git-gateway",
+    "name": "github",
+    "repo": "rolland07/testweb",
     "branch": "main"
   },
-  "media_folder": "img/blog",
-  "public_folder": "/img/blog",
+  "media_folder": "img/uploads",    
+  "public_folder": "/img/uploads", 
   "collections": [
     {
-      "name": "posts",
-      "label": "Blog",
-      "folder": "post",
+      "name": "blog",
+      "label": "Blog Posts",
+      "folder": "post",            
       "create": true,
-      "slug": "{{slug}}",
+      "slug": "{{year}}-{{month}}-{{day}}-{{slug}}",
       "fields": [
-        { "label": "Title", "name": "title", "widget": "string" },
-        { "label": "Date", "name": "date", "widget": "datetime" },
-        { "label": "Image", "name": "image", "widget": "image" },
-        { "label": "Body", "name": "body", "widget": "markdown" }
+        {"label": "Title", "name": "title", "widget": "string"},
+        {"label": "Publish Date", "name": "date", "widget": "datetime"},
+        {"label": "Featured Image", "name": "thumbnail", "widget": "image", "media_folder": "img/uploads"},
+        {"label": "Body", "name": "body", "widget": "markdown"}
       ]
     }
   ]
