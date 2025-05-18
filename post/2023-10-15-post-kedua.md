@@ -5,6 +5,6 @@ category: Politics
 author: Nama Author
 excerpt: |
   ini adalah anu adn anu 
-thumbnail: img/blog/blog-1.jpg
+thumbnail: /img/uploads/logoputih2.png
 ---
 uwauwauawuwauauwuwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwdlpfedopslkefopckedsopdkjcvsmc;/mdcijuesfriojwuafcv;nsd;jiuefwo;fjc;d nlujqjeworfdudeowaiujdikxcjueioyhdfrwcndkzdjieoqujfeci
