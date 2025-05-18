@@ -1161,7 +1161,9 @@ async function loadPosts(){
       title:meta.title||slug,
       date:new Date(meta.date).toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'}),
       cat:meta.category||'General',
-      img:meta.image||'https://placehold.co/600x400?text=No+Image',
+      img: meta.thumbnail?.startsWith('/')
+      ? meta.thumbnail
+      : `/img/uploads/${meta.thumbnail}` || 'https://placehold.co/600x400?text=No+Image'`,
       author:meta.author||'Admin',
       excerpt:meta.excerpt||body.trim().slice(0,120)+'…',
       url:`/post/${slug}.html`
