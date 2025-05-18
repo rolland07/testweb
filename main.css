@@ -3119,105 +3119,6 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Blog Posts Section
---------------------------------------------------------------*/
-.blog-posts article {
-  background-color: var(--surface-color);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.blog-posts .post-img {
-  max-height: 240px;
-  margin: -30px -30px 15px -30px;
-  overflow: hidden;
-}
-
-.blog-posts .post-category {
-  font-size: 16px;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  margin-bottom: 10px;
-}
-
-.blog-posts .title {
-  font-size: 20px;
-  font-weight: 700;
-  padding: 0;
-  margin: 0 0 20px 0;
-}
-
-.blog-posts .title a {
-  color: var(--heading-color);
-  transition: 0.3s;
-}
-
-.blog-posts .title a:hover {
-  color: var(--accent-color);
-}
-
-.blog-posts .post-author-img {
-  width: 50px;
-  border-radius: 50%;
-  margin-right: 15px;
-}
-
-.blog-posts .post-author {
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.blog-posts .post-date {
-  font-size: 14px;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  margin-bottom: 0;
-}
-
-/*--------------------------------------------------------------
-# Blog Pagination Section
---------------------------------------------------------------*/
-.blog-pagination {
-  padding-top: 0;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-}
-
-.blog-pagination ul {
-  display: flex;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.blog-pagination li {
-  margin: 0 5px;
-  transition: 0.3s;
-}
-
-.blog-pagination li a {
-  color: var(--accent-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--accent-color);
-}
-
-.blog-pagination li a.active,
-.blog-pagination li a:hover {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-}
-
-.blog-pagination li a.active a,
-.blog-pagination li a:hover a {
-  color: var(--contrast-color);
-}
-
-/*--------------------------------------------------------------
 # Comment Form Section
 --------------------------------------------------------------*/
 .comment-form {
@@ -3914,33 +3815,57 @@ blog tambahan
 -----------------------------------------------------------------------------------*/|
 
 /* ----- Blog card grid ---- */
-.inspiration-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+.inspiration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 32px;
-  padding: 0 24px; /* ➜ Tambahkan ini */
-  max-width: 1140px; /* Tambahan opsional */
+  padding: 0 24px;
+  max-width: 1140px;
   margin: 0 auto;
 }
-.blog-card{
-  background:#fff;
-  border-radius:8px;
-  box-shadow:0 4px 20px rgba(0,0,0,.08);
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  transition:.3s transform;
-}
-.blog-card:hover{transform:translateY(-6px)}
-.blog-card img{width:100%;height:220px;object-fit:cover}
-.blog-card .body{padding:24px 28px;flex:1}
-.blog-card .category{font-size:14px;color:#777;text-transform:capitalize}
-.blog-card h3{margin:8px 0 12px;font-size:22px;line-height:1.25}
-.blog-card .meta{display:flex;align-items:center;gap:12px;font-size:14px;color:#666}
-.blog-card .meta img{width:32px;height:32px;border-radius:50%}
-.blog-card .read-more{
-  display:block;margin:18px 0 0;
-  color:var(--accent-color,#534824);font-weight:600;font-size:15px
+
+.blog-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: 0.3s;
 }
 
+.blog-card:hover {
+  transform: translateY(-6px);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.blog-card .body {
+  padding: 24px;
+}
+
+.blog-card .category {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.blog-card h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.blog-card p {
+  font-size: 15px;
+  color: #555;
+  margin: 12px 0;
+}
+
+.read-more {
+  font-weight: bold;
+  font-size: 15px;
+  color: #534824;
+}
 
