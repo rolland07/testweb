@@ -1175,17 +1175,21 @@ async function loadPosts(){
   // sort terbaru
   cards.sort((a,b)=>new Date(b.date)-new Date(a.date));
 
-  grid.innerHTML=cards.map(p=>`
-    <article class="blog-card" data-aos="fade-up">
-      <img src="${p.img}" alt="${p.title}">
-      <div class="body">
-        <span class="category">${p.cat}</span>
-        <h3>${p.title}</h3>
-        <p>${p.excerpt}</p>
-        <a class="read-more" href="${p.url}">Read More →</a>
-      </div>
-    </article>
-  `).join('');
+ grid.innerHTML = cards.map(p => `
+  <article class="blog-card" data-aos="fade-up">
+    <div class="card-header">
+      <span class="category">${p.cat}</span>
+      <h3>${p.title}</h3>
+    </div>
+    <div class="card-body">
+      <p>${p.excerpt}</p>
+    </div>
+    <div class="card-footer">
+      <span class="author">${p.author}</span>
+      <span class="date">${p.date}</span>
+    </div>
+  </article>
+`).join('');
 }
 window.addEventListener('DOMContentLoaded',loadPosts);
 
