@@ -1139,72 +1139,55 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 // Fungsi untuk memuat blog posts
 // Fetch posts dari GitHub API
-async function loadPosts() {
-  const container = document.querySelector('.inspiration-posts');
-  if (!container) {
-    console.error('Container .inspiration-posts not found');
-    return;
-  }
 
-  try {
-    const response = await fetch('https://api.github.com/repos/rolland07/testweb/contents/post');
-    const files = await response.json();
+async function loadPosts(){
+  const grid=document.querySelector('.inspiration-grid');
+  if(!grid) return;
 
-    const posts = [];
+  const list=await fetch(
+     'https://api.github.com/repos/rolland07/testweb/contents/post'
+  ).then(r=>r.json());
 
-    for (const file of files) {
-      if (!file.name.endsWith('.md') || !file.download_url) continue;
+  const mdFiles=list.filter(f=>f.name.endsWith('.md'));
 
-      const res = await fetch(file.download_url);
-      const text = await res.text();
+  const cards=await Promise.all(mdFiles.map(async f=>{
+    const raw=await fetch(f.download_url).then(r=>r.text());
+    const [,fm,body]=raw.split('---');
+    const meta=Object.fromEntries(fm.trim().split('\n')
+          .map(l=>l.split(':').map(s=>s.trim()))
+    );
+    const slug=meta.slug||f.name.replace('.md','');
+    return{
+      title:meta.title||slug,
+      date:new Date(meta.date).toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'}),
+      cat:meta.category||'General',
+      img:meta.image||'https://placehold.co/600x400?text=No+Image',
+      author:meta.author||'Admin',
+      excerpt:meta.excerpt||body.trim().slice(0,120)+'…',
+      url:`/post/${slug}.html`
+    };
+  }));
 
-      const [, rawFrontMatter, rawBody] = text.split('---');
+  // sort terbaru
+  cards.sort((a,b)=>new Date(b.date)-new Date(a.date));
 
-      if (!rawFrontMatter || !rawBody) continue;
-
-      const frontMatter = Object.fromEntries(
-        rawFrontMatter
-          .trim()
-          .split('\n')
-          .map(line => {
-            const [key, ...rest] = line.split(':');
-            return [key.trim(), rest.join(':').trim()];
-          })
-      );
-
-      posts.push({
-        title: frontMatter.title || file.name.replace('.md', ''),
-        date: frontMatter.date || '',
-        category: frontMatter.category || '',
-        author: frontMatter.author || '',
-        body: rawBody.trim()
-      });
-    }
-
-    if (posts.length === 0) {
-      container.innerHTML = '<p>Tidak ada post yang tersedia.</p>';
-      return;
-    }
-
-    // Render posts
-    container.innerHTML = posts
-      .map(post => `
-        <div class="inspiration-item">
-          <span class="category">${post.category}</span>
-          <h3>${post.title}</h3>
-          <p class="author">${post.author} • ${new Date(post.date).toLocaleDateString()}</p>
-          <div class="content">${post.body}</div>
+  grid.innerHTML=cards.map(p=>`
+    <article class="blog-card" data-aos="fade-up">
+      <img src="${p.img}" alt="${p.title}">
+      <div class="body">
+        <span class="category">${p.cat}</span>
+        <h3>${p.title}</h3>
+        <p>${p.excerpt}</p>
+        <div class="meta">
+          <img src="/img/author-avatar.jpg" alt="${p.author}">
+          <span>${p.author} • ${p.date}</span>
         </div>
-      `)
-      .join('');
-
-  } catch (err) {
-    console.error('Error loading posts:', err);
-    container.innerHTML = '<p>Error loading blog posts.</p>';
-  }
+        <a class="read-more" href="${p.url}">Read More →</a>
+      </div>
+    </article>
+  `).join('');
 }
-window.addEventListener('DOMContentLoaded', loadPosts);
-
+window.addEventListener('DOMContentLoaded',loadPosts);
 
 </script>
 
