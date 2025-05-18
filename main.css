@@ -3814,28 +3814,27 @@ ktrng tmbhn
 blog tambahan
 -----------------------------------------------------------------------------------*/|
 
-/* BlogArtikel Section Styling */
-/* BlogArtikel Section Styling - Responsive */
+* BlogArtikel Section Styling */
 .blogartikel-section {
-  padding: 40px 0;
+  padding: 60px 0;
   background: #fafafa;
   position: relative;
 }
 
 .blogartikel-header {
   text-align: center;
-  margin-bottom: 30px;
-  padding: 0 15px;
+  margin-bottom: 40px;
+  padding: 0 20px;
 }
 
 .blogartikel-title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #333;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   position: relative;
   display: inline-block;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   font-weight: 700;
 }
 
@@ -3845,7 +3844,7 @@ blog tambahan
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 100px;
   height: 3px;
   background: linear-gradient(90deg, #534824, #d4af37);
 }
@@ -3853,56 +3852,58 @@ blog tambahan
 /* BlogArtikel Container */
 .blogartikel-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 20px;
   position: relative;
 }
 
-/* BlogArtikel Grid - Responsive */
+/* BlogArtikel Grid */
 .blogartikel-grid {
   display: flex;
-  gap: 20px;
-  padding: 15px;
+  gap: 35px;
+  padding: 25px 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  cursor: grab;
-  user-select: none;
-  scrollbar-width: thin;
-  scrollbar-color: #d4af37 #f1f1f1;
+  cursor: grab; /* Ubah kursor saat hover */
+  user-select: none; /* Mencegah text selection saat scroll */
+  scrollbar-width: thin; /* Untuk Firefox */
+  scrollbar-color: #d4af37 #f1f1f1; /* Warna scrollbar */
 }
 
 .blogartikel-grid:active {
   cursor: grabbing;
 }
-
+/* Hide scrollbar for Chrome/Safari */
 .blogartikel-grid::-webkit-scrollbar {
-  height: 6px;
+  height: 8px;
 }
 
 .blogartikel-grid::-webkit-scrollbar-thumb {
   background: #d4af37;
   border-radius: 4px;
 }
-
 .blogartikel-grid::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 4px;
 }
 
-/* BlogArtikel Card - Responsive */
+/* BlogArtikel Card */
 .blogartikel-card {
-  min-width: calc(100% - 30px);
+  min-width: 320px;
+  max-width: 320px;
   scroll-snap-align: start;
   flex: 0 0 auto;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  transition: all 0.3s ease;
-  pointer-events: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  display: flex;
+  flex-direction: column;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  pointer-events: none; /* Biarkan event melalui card ke container */
 }
 
 .blogartikel-card a,
@@ -3911,71 +3912,11 @@ blog tambahan
 }
 
 .blogartikel-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* Responsive Breakpoints */
-@media (min-width: 480px) {
-  .blogartikel-card {
-    min-width: calc(50% - 25px);
-  }
-}
-
-@media (min-width: 768px) {
-  .blogartikel-section {
-    padding: 50px 0;
-  }
-  
-  .blogartikel-title {
-    font-size: 1.8rem;
-  }
-  
-  .blogartikel-container {
-    padding: 0 20px;
-  }
-  
-  .blogartikel-grid {
-    gap: 25px;
-    padding: 20px;
-  }
-  
-  .blogartikel-card {
-    min-width: calc(33.333% - 27px);
-    padding: 25px;
-  }
-}
-
-@media (min-width: 992px) {
-  .blogartikel-section {
-    padding: 60px 0;
-  }
-  
-  .blogartikel-title {
-    font-size: 2rem;
-  }
-  
-  .blogartikel-container {
-    max-width: 1400px;
-  }
-  
-  .blogartikel-grid {
-    gap: 30px;
-    padding: 25px;
-  }
-  
-  .blogartikel-card {
-    min-width: calc(25% - 30px);
-  }
-}
-
-@media (min-width: 1200px) {
-  .blogartikel-card {
-    min-width: 320px;
-  }
-}
-
-/* Card Elements (unchanged) */
+/* Card Elements */
 .blogartikel-category {
   display: inline-block;
   font-size: 0.75rem;
@@ -3991,7 +3932,7 @@ blog tambahan
 }
 
 .blogartikel-card-title {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #222;
   margin: 0 0 1rem 0;
@@ -4009,9 +3950,9 @@ blog tambahan
 }
 
 .blogartikel-excerpt {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #555;
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0 0 1.5rem 0;
   flex-grow: 1;
 }
@@ -4041,10 +3982,103 @@ blog tambahan
   margin-left: 12px;
 }
 
-/* Loading and Error States (unchanged) */
-.blogartikel-loading,
-.blogartikel-error {
-  text-align: center;
-  padding: 20px;
-  width: 100%;
+/* Responsive Breakpoints */
+@media (min-width: 480px) {
+  .blogartikel-card {
+    min-width: calc(50% - 25px);
+    max-width: calc(50% - 25px);
+  }
+}
+
+@media (min-width: 768px) {
+  .blogartikel-section {
+    padding: 60px 0;
+  }
+  
+  .blogartikel-title {
+    font-size: 2rem;
+  }
+  
+  .blogartikel-card {
+    min-width: calc(33.333% - 27px);
+    max-width: calc(33.333% - 27px);
+  }
+}
+
+@media (min-width: 992px) {
+  .blogartikel-container {
+    max-width: 1200px;
+    padding: 0 30px;
+  }
+  
+  .blogartikel-grid {
+    gap: 30px;
+    padding: 25px 30px;
+  }
+  
+  .blogartikel-card {
+    min-width: calc(25% - 30px);
+    max-width: calc(25% - 30px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .blogartikel-card {
+    min-width: 280px;
+    max-width: 280px;
+  }
+}
+
+/* Card Content Styles */
+.blogartikel-category {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  margin-bottom: 0.8rem;
+}
+
+.blogartikel-card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.blogartikel-meta {
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.blogartikel-excerpt {
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+@media (min-width: 768px) {
+  .blogartikel-category {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+  }
+  
+  .blogartikel-card-title {
+    font-size: 1.4rem;
+  }
+  
+  .blogartikel-meta {
+    font-size: 0.8rem;
+  }
+  
+  .blogartikel-excerpt {
+    font-size: 0.95rem;
+  }
+}
+
+/* Navigation Arrows */
+.blogartikel-scroll-btn {
+  display: none;
+  width: 36px;
+  height: 36px;
+}
+
+@media (min-width: 768px) {
+  .blogartikel-scroll-btn {
+    display: block;
+  }
 }
