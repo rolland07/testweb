@@ -81,16 +81,16 @@
           ]
         },
         {
-            "file": "content/JIKAGAMBARTIDAKMUNCUL.md",
-            "label": "Panduan CMS",
-            "name": "panduan",
-            "fields": [
-              {
-                "label": "Instruksi",
-                "name": "body",
-                "widget": "markdown",
-                "default": "### Cara Menulis Blog\n1. Klik 'Blog Posts'\n2. Klik 'Create new'\n3. Isi form, lalu klik 'Publish'"
-              }
+           "file": "content/JIKAGAMBARTIDAKMUNCUL.md",
+           "label": "Gambar Tidak Muncul?",
+           "name": "panduan-gambar",
+           "fields": [
+            {
+              "label": "Instruksi",
+              "name": "body",
+              "widget": "markdown",
+              "default": "### Jika gambar tidak muncul\nPastikan path dan format sudah benar..."
+            }
             ]
           }
       ]
