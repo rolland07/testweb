@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>
+        for your inspiration
+    </title>
+</head>
+<body>
+  <main id="article"></main>
+  <script src="https://cdn.jsdelivr.net/npm/marked@4/marked.min.js"></script>
+  <script>
+    // Ambil slug dari URL
+    const slug=location.pathname.split('/').pop().replace('.html','');
+    fetch(`https://raw.githubusercontent.com/rolland07/testweb/main/post/${slug}.md`)
+      .then(r=>r.text())
+      .then(md=>{
+        const [,fm,body]=md.split('---');
+        document.getElementById('article').innerHTML=marked.parse(body);
+        // bisa juga parse front‑matter untuk title, date, dsb.
+      });
+  </script>
+</body>
+</html>
