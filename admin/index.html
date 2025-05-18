@@ -8,39 +8,17 @@
   <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2.0.0/dist/cms.css" />
 </head>
 <body>
-  <div style="padding: 20px; background: #f0f0f0;">
+  <!-- Elemen tambahan: teks sambutan dan tombol -->
+  <div style="padding: 20px; background-color: #f8f9fa; text-align: center;">
     <h2>Selamat Datang di CMS Lambordi</h2>
-    <p>Ikuti <a href="/panduan.pdf" target="_blank">panduan ini</a> untuk mengelola konten.</p>
-    <button onclick="alert('Ini tombol custom!')">Tombol Khusus</button>
+    <p>Gunakan <a href="/panduan.pdf" target="_blank">panduan ini</a> untuk mengelola konten website Anda.</p>
+    <button onclick="alert('Contoh tombol bantuan. Bisa diarahkan ke panduan lain.')">Tombol Bantuan</button>
   </div>
+
+  <!-- Script CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   <script>
-    // Load config
-    CMS.registerPreviewStyle('/main.css'); // Sesuaikan path CSS Anda
-    CMS.init({
-      config: {
-        backend: {
-          name: "github",
-          repo: "rolland07/testweb",
-          branch: "main"
-        },
-        media_folder: "img/uploads",
-        public_folder: "/img/uploads",
-        collections: [
-          {
-            name: "blog",
-            label: "Blog Posts",
-            folder: "post",
-            fields: [
-              {label: "Title", name: "title", widget: "string"},
-              {label: "Publish Date", name: "date", widget: "datetime"},
-              {label: "Featured Image", name: "thumbnail", widget: "image"},
-              {label: "Body", name: "body", widget: "markdown"}
-            ]
-          }
-        ]
-      }
-    });
+    CMS.registerPreviewStyle('/main.css'); // Jika kamu punya file CSS untuk preview
   </script>
 </body>
 </html>
