@@ -3817,14 +3817,14 @@ blog tambahan
 /* ----- Blog card grid ---- */
 /* Blog grid container */
 .inspiration-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex;
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin; /* Untuk Firefox */
+  -webkit-overflow-scrolling: touch; /* Untuk smooth scroll di iOS */
 }
-
 /* Individual blog card */
 .blog-card {
   background: white;
@@ -3937,4 +3937,24 @@ blog tambahan
   color: #d9534f;
   padding: 20px;
   grid-column: 1 / -1;
+}
+/* Style scrollbar untuk Webkit browsers */
+.inspiration-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.inspiration-grid::-webkit-scrollbar-thumb {
+  background: #534824;
+  border-radius: 3px;
+}
+
+.inspiration-grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.blog-card {
+  min-width: 280px; /* Lebar minimum card */
+  scroll-snap-align: start;
+  flex: 0 0 auto; /* Mencegah card meregang */
+  margin-bottom: 10px; /* Ruang untuk scrollbar */
 }
