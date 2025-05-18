@@ -14,7 +14,7 @@ Cara Menggunakan CMS Lambordi:
      date: 2023-10-15T14:30:00+07:00
      thumbnail: "/img/uploads/contoh.jpg"\
 
-     - - -
+     \---\
 
      isi blog sementara
 2. **Edit Post**:
