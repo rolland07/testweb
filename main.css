@@ -3865,13 +3865,28 @@ blog tambahan
   padding: 25px 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
   -webkit-overflow-scrolling: touch;
+  cursor: grab; /* Ubah kursor saat hover */
+  user-select: none; /* Mencegah text selection saat scroll */
+  scrollbar-width: thin; /* Untuk Firefox */
+  scrollbar-color: #d4af37 #f1f1f1; /* Warna scrollbar */
 }
 
+.blogartikel-grid:active {
+  cursor: grabbing;
+}
 /* Hide scrollbar for Chrome/Safari */
 .blogartikel-grid::-webkit-scrollbar {
-  display: none;
+  height: 8px;
+}
+
+.blogartikel-grid::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 4px;
+}
+.blogartikel-grid::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
 }
 
 /* BlogArtikel Card */
@@ -3888,6 +3903,12 @@ blog tambahan
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  pointer-events: none; /* Biarkan event melalui card ke container */
+}
+
+.blogartikel-card a,
+.blogartikel-card button {
+  pointer-events: auto;
 }
 
 .blogartikel-card:hover {
