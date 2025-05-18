@@ -10,13 +10,14 @@ Cara Menggunakan CMS Lambordi:
    * ### Isi dengan template:
 
      \---\
-     title: "Judul Post "
-     date: 2023-10-15T14:30:00+07:00
-     thumbnail: "/img/uploads/contoh.jpg"
-
-     \---
+     title: "Judul Post "\
+     date: 2023-10-15T14:30:00+07:00\
+     thumbnail: "img/uploads/contoh.jpg"\
+     -﻿--
 
      isi blog sementara
+
+
 2. **Edit Post**:
 
    * Buka: https://lambordi.netlify.app/admin/
@@ -24,7 +25,7 @@ Cara Menggunakan CMS Lambordi:
 3. **Upload Gambar**:
 
    * Simpan di `img/uploads/`
-   * Referensi di post: `![deskripsi](/img/uploads/nama-file.jpg)`
+   * Referensi di post: `![deskripsi](img/uploads/nama-file.jpg)`
 
 ini buat isi dan format tambahkan blog oke:)
 setelah itu login ke /admin dan edit sesuka hati disana ya\
