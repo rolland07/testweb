@@ -25,10 +25,36 @@
           "widget": "datetime"
         },
         {
+          "label": "Slug",
+          "name": "slug",
+          "widget": "string",
+          "required": false,
+          "hint": "Opsional, otomatis diisi dari judul kalau kosong"
+        },
+        {
+          "label": "Category",
+          "name": "category",
+          "widget": "string"
+        },
+        {
+          "label": "Author",
+          "name": "author",
+          "widget": "string",
+          "default": "Admin"
+        },
+        {
+          "label": "Excerpt",
+          "name": "excerpt",
+          "widget": "text",
+          "required": false,
+          "hint": "Ringkasan singkat untuk tampil di homepage"
+        },
+        {
           "label": "Featured Image",
           "name": "thumbnail",
           "widget": "image",
-          "media_folder": "img/uploads"
+          "media_folder": "img/uploads",
+          "public_folder": "/img/uploads"
         },
         {
           "label": "Body",
