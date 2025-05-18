@@ -66,14 +66,14 @@
                   "name": "excerpt",
                   "widget": "text",
                   "required": false,
-                  "hint": "Ringkasan singkat untuk tampil di homepage"
+                  "hint": "SANGAT DISARANKAN. Ringkasan singkat untuk tampil di homepage"
                 },
                 {
                   "label": "Featured Image",
                   "name": "thumbnail",
                   "widget": "image",
                   "media_folder": "img/uploads",
-                  "public_folder": "/img/uploads"
+                  "public_folder": "img/uploads"
                 },
                 {
                   "label": "Body",
@@ -88,6 +88,19 @@
               "files": [
                 {
                   "file": "content/tutorial.md",
+                  "label": "Panduan CMS",
+                  "name": "panduan",
+                  "fields": [
+                    {
+                      "label": "Instruksi",
+                      "name": "body",
+                      "widget": "markdown",
+                      "default": "### Cara Menulis Blog\n1. Klik 'Blog Posts'\n2. Klik 'Create new'\n3. Isi form, lalu klik 'Publish'"
+                    }
+                  ]
+                },
+               {
+                  "file": "content/JIKAGAMBARTIDAKMUNCUL.md",
                   "label": "Panduan CMS",
                   "name": "panduan",
                   "fields": [
