@@ -4,7 +4,7 @@ date: 2025-05-18T11:22:05.967Z
 category: ADVICE
 author: Admin
 excerpt: CONTOH DARI DESAIN YANG BAGUS
-thumbnail: img/project1.jpg
+thumbnail: /img/uploads/project1.jpg
 ---
 <!--StartFragment-->
 
