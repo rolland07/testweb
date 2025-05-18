@@ -3,6 +3,7 @@ title: INTERIOR YANG MODERN
 date: 2025-05-18T10:57:28.328Z
 category: MODERNSTYLE
 author: Admin
+excerpt: INI BAPAK BUDI
 thumbnail: img/uploads/after.png
 ---
 <!--StartFragment-->
