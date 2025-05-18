@@ -1192,7 +1192,7 @@ async function loadBlogArtikelPosts() {
           cat: meta.category || 'General',
           author: meta.author || 'Admin',
           excerpt: meta.excerpt || body.trim().slice(0, 120) + '…',
-          url: `/post/${slug}.html`,
+          url: `post/${slug}.html`,
           thumbnail: meta.thumbnail || null
         };
       } catch (e) {
