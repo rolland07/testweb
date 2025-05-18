@@ -743,12 +743,12 @@
     
 
     <!-- Recent Posts Section -->
-     <section id="recent-posts" class="section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>FOR YOUR INSPIRATION</h2>
+    <section id="blogartikel-posts" class="blogartikel-section">
+      <div class="blogartikel-header">
+        <h2 class="blogartikel-title">FOR YOUR INSPIRATION</h2>
       </div>
-      <div class="container">
-        <div class="inspiration-grid"></div>   <!-- JS akan isi -->
+      <div class="blogartikel-container">
+        <div class="blogartikel-grid"></div>
       </div>
     </section>
 
@@ -1140,84 +1140,106 @@ document.addEventListener('DOMContentLoaded', function() {
 // Fungsi untuk memuat blog posts
 // Fetch posts dari GitHub API
 
-async function loadPosts(){
-  const grid = document.querySelector('.inspiration-grid');
-  if(!grid) return;
+async function loadBlogArtikelPosts() {
+  const grid = document.querySelector('.blogartikel-grid');
+  if (!grid) return;
 
   try {
+    // Show loading state
+    grid.innerHTML = '<div class="blogartikel-loading">Loading posts...</div>';
+
     const list = await fetch('https://api.github.com/repos/rolland07/testweb/contents/post')
       .then(r => r.json());
 
     const mdFiles = list.filter(f => f.name.endsWith('.md'));
 
     const cards = await Promise.all(mdFiles.map(async f => {
-      const raw = await fetch(f.download_url).then(r => r.text());
-      const parts = raw.split('---');
-      
-      // Handle malformed markdown files
-      if(parts.length < 3) {
-        return {
-          title: f.name.replace('.md', ''),
-          date: 'No date',
-          cat: 'General',
-          author: 'Admin',
-          excerpt: 'No content available',
-          url: '#'
-        };
-      }
-
-      const fm = parts[1].trim();
-      const body = parts[2].trim();
-      
-      // Parse front matter lebih robust
-      const meta = {};
-      fm.split('\n').forEach(line => {
-        const [key, ...value] = line.split(':');
-        if(key && value) {
-          meta[key.trim()] = value.join(':').trim();
+      try {
+        const raw = await fetch(f.download_url).then(r => r.text());
+        const parts = raw.split('---');
+        
+        if (parts.length < 3) {
+          return {
+            title: f.name.replace('.md', ''),
+            date: 'No date',
+            cat: 'General',
+            author: 'Admin',
+            excerpt: 'No content available',
+            url: '#'
+          };
         }
-      });
 
-      const slug = meta.slug || f.name.replace('.md', '');
-      
-      return {
-        title: meta.title || slug,
-        date: meta.date ? new Date(meta.date).toLocaleDateString('en-US', {
-          month: 'short', 
-          day: '2-digit', 
-          year: 'numeric'
-        }) : 'No date',
-        cat: meta.category || 'General',
-        author: meta.author || 'Admin',
-        excerpt: meta.excerpt || body.trim().slice(0, 100) + '…',
-        url: `/post/${slug}.html`
-      };
+        const fm = parts[1].trim();
+        const body = parts[2].trim();
+        
+        const meta = {};
+        fm.split('\n').forEach(line => {
+          const [key, ...value] = line.split(':');
+          if (key && value) {
+            meta[key.trim()] = value.join(':').trim();
+          }
+        });
+
+        const slug = meta.slug || f.name.replace('.md', '');
+        
+        return {
+          title: meta.title || slug,
+          date: meta.date ? new Date(meta.date).toLocaleDateString('en-US', {
+            month: 'short', 
+            day: '2-digit', 
+            year: 'numeric'
+          }) : 'No date',
+          cat: meta.category || 'General',
+          author: meta.author || 'Admin',
+          excerpt: meta.excerpt || body.trim().slice(0, 120) + '…',
+          url: `/post/${slug}.html`,
+          thumbnail: meta.thumbnail || null
+        };
+      } catch (e) {
+        console.error(`Error processing file ${f.name}:`, e);
+        return null;
+      }
     }));
 
-    // Sort by date (newest first)
-    cards.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Filter out null cards and sort by date
+    const validCards = cards.filter(card => card !== null);
+    validCards.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     // Generate HTML
-    grid.innerHTML = cards.map(p => `
-      <article class="blog-card" data-category="${p.cat.toLowerCase()}">
-        <span class="category">${p.cat.toUpperCase()}</span>
-        <h3 class="title">${p.title}</h3>
-        <div class="meta">
-          <span class="author">${p.author}</span>
-          <span class="date">${p.date}</span>
-        </div>
-        <p class="excerpt">${p.excerpt}</p>
-        <a href="${p.url}" class="read-more">Read More</a>
-      </article>
-    `).join('');
+    if (validCards.length > 0) {
+      grid.innerHTML = validCards.map(p => `
+        <article class="blogartikel-card" data-category="${p.cat.toLowerCase()}">
+          ${p.thumbnail ? `<img src="${p.thumbnail}" alt="${p.title}" class="blogartikel-thumbnail">` : ''}
+          <span class="blogartikel-category">${p.cat.toUpperCase()}</span>
+          <h3 class="blogartikel-card-title">${p.title}</h3>
+          <div class="blogartikel-meta">
+            <span class="blogartikel-author">${p.author}</span>
+            <span class="blogartikel-date">${p.date}</span>
+          </div>
+          <p class="blogartikel-excerpt">${p.excerpt}</p>
+          <a href="${p.url}" class="blogartikel-readmore">Read More</a>
+        </article>
+      `).join('');
+    } else {
+      grid.innerHTML = '<p class="blogartikel-error">No posts available at the moment.</p>';
+    }
 
   } catch (error) {
     console.error('Error loading posts:', error);
-    grid.innerHTML = '<p class="error">Unable to load posts. Please try again later.</p>';
+    grid.innerHTML = '<p class="blogartikel-error">Unable to load posts. Please try again later.</p>';
   }
 }
 
-window.addEventListener('DOMContentLoaded', loadPosts);
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  loadBlogArtikelPosts();
+  
+  // Optional: Add navigation arrows for better UX
+  const grid = document.querySelector('.blogartikel-grid');
+  if (grid) {
+    // You can add arrow navigation here if needed
+  }
+});
 
 </script>
 
