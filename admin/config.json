@@ -1,7 +1,7 @@
 {
   "backend": {
     "name": "github",
-    "repo": "rolland07/testweb",  
+    "repo": "rolland07/testweb",
     "branch": "main"
   },
   "media_folder": "img/uploads",
@@ -12,12 +12,48 @@
       "label": "Blog Posts",
       "folder": "post",
       "create": true,
-      "slug": "{{year}}-{{month}}-{{day}}-{{slug}}",  
+      "slug": "{{year}}-{{month}}-{{day}}-{{slug}}",
       "fields": [
-        {"label": "Title", "name": "title", "widget": "string"},
-        {"label": "Publish Date", "name": "date", "widget": "datetime"},
-        {"label": "Featured Image", "name": "thumbnail", "widget": "image", "media_folder": "img/uploads"},
-        {"label": "Body", "name": "body", "widget": "markdown"}
+        {
+          "label": "Title",
+          "name": "title",
+          "widget": "string"
+        },
+        {
+          "label": "Publish Date",
+          "name": "date",
+          "widget": "datetime"
+        },
+        {
+          "label": "Featured Image",
+          "name": "thumbnail",
+          "widget": "image",
+          "media_folder": "img/uploads"
+        },
+        {
+          "label": "Body",
+          "name": "body",
+          "widget": "markdown"
+        }
+      ]
+    },
+    {
+      "name": "tutorial",
+      "label": "Tutorial",
+      "files": [
+        {
+          "file": "content/tutorial.md",
+          "label": "Panduan CMS",
+          "name": "panduan",
+          "fields": [
+            {
+              "label": "Instruksi",
+              "name": "body",
+              "widget": "markdown",
+              "default": "### Cara Menulis Blog\n1. Klik 'Blog Posts'\n2. Klik 'Create new'\n3. Isi form, lalu klik 'Publish'"
+            }
+          ]
+        }
       ]
     }
   ]
