@@ -1,0 +1,31 @@
+name: Auto Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Eleventy
+        run: |
+          npm install -g @11ty/eleventy
+          npm install
+
+      - name: Build site
+        run: npx eleventy
+
+      - name: Upload to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+        server: ftp.lambordi.com
+        username: ${{ secrets.FTP_user }}
+        password: ${{ secrets.FTP_PASS }}
+        server-dir: /public_html/
+        local-dir: ./dist/
+
+
